@@ -16,6 +16,7 @@ public class Event extends Occasion {
 		setEndDate(enddate);
 		setEndTime(endtime);
 		setColor();
+		setType("Event");
 	}
 	
 	@Override

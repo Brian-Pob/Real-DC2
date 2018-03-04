@@ -9,6 +9,7 @@ public class Task extends Occasion{
 		setStartDate(startdate);
 		setStartTime(starttime);
 		setColor();
+		setType("Task");
 	}
 
 	@Override

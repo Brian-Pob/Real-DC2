@@ -85,5 +85,13 @@ public abstract class Occasion {
 	public String getStrColor() {
 		return this.strColor;
 	}
+
+	public String getType() {
+		return Type;
+	}
+
+	public void setType(String type) {
+		Type = type;
+	}
 	
 }
