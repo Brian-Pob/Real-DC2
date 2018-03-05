@@ -14,87 +14,99 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class AddEventsMenu extends JFrame{
-	private JTextField itemNameInput;
+	private JTextField eventNameInput;
 	public AddEventsMenu() {
 		
-		itemNameInput = new JTextField();
-		itemNameInput.setColumns(10);
+		eventNameInput = new JTextField();
+		eventNameInput.setColumns(10);
 		
-		JButton btnAddItem = new JButton("Add Item");
+		JButton btnAddEvent = new JButton("Add Event");
 		
 		JLabel startLabel = new JLabel("Start Date & Time");
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox cmbStartMonth = new JComboBox();
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox cmbStartDay = new JComboBox();
 		
-		JComboBox comboBox_2 = new JComboBox();
+		JComboBox cmbStartTime = new JComboBox();
 		
-		JComboBox comboBox_3 = new JComboBox();
+		JComboBox cmbEndTime = new JComboBox();
 		
 		JLabel endLabel = new JLabel("End Date & Time");
 		
-		JComboBox comboBox_4 = new JComboBox();
+		JComboBox cmbEndDay = new JComboBox();
 		
-		JComboBox comboBox_5 = new JComboBox();
+		JComboBox cmbEndMonth = new JComboBox();
 		
-		JComboBox comboBox_6 = new JComboBox();
+		JComboBox cmbEndYear = new JComboBox();
 		
-		JComboBox comboBox_7 = new JComboBox();
+		JComboBox cmbStartYear = new JComboBox();
+		
+		JLabel lblEventName = new JLabel("Event Name");
+		
+		JLabel lblCmbLabel = new JLabel("MM           DD          YYYY       hh:mm");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(startLabel)
-						.addComponent(endLabel))
-					.addGap(25)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblEventName)
 							.addGap(18)
-							.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE))
+							.addComponent(eventNameInput, GroupLayout.PREFERRED_SIZE, 247, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(btnAddEvent))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(itemNameInput, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnAddItem))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(startLabel)
+								.addComponent(endLabel))
+							.addGap(25)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(lblCmbLabel)
+								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(cmbEndMonth, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(cmbStartMonth, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addGap(21)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(cmbEndDay, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(cmbStartDay, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addGap(17)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(cmbEndYear, 0, 0, Short.MAX_VALUE)
+										.addComponent(cmbStartYear, 0, 26, Short.MAX_VALUE))
+									.addGap(18)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(cmbEndTime, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(cmbStartTime, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+					.addContainerGap(14, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(63)
+					.addGap(31)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(itemNameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAddItem))
-					.addGap(27)
+						.addComponent(lblEventName)
+						.addComponent(eventNameInput, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAddEvent))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblCmbLabel)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(startLabel))
-					.addGap(27)
+						.addComponent(startLabel)
+						.addComponent(cmbStartMonth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmbStartDay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmbStartYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmbStartTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(endLabel)
-						.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(20))
+						.addComponent(cmbEndDay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmbEndMonth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmbEndYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmbEndTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(123))
 		);
 		getContentPane().setLayout(groupLayout);
 		JFrame jf = new JFrame();
