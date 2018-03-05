@@ -10,12 +10,14 @@ import java.util.Date;
 
 public abstract class Occasion {
 	protected Calendar startDate;
+	protected Calendar endDate;
 	protected String name;
 	protected Color color;
 	protected String strColor; 
-	protected Calendar startTime;
+	//protected Calendar startTime;
 	protected String Type;
 	
+	/*
 	public Calendar setTime(String input) {
 		Calendar cal = null;
 		DateFormat formatter = new SimpleDateFormat("HH:mm");
@@ -37,7 +39,8 @@ public abstract class Occasion {
 	public void setStartTime(String input){
 		this.startTime = setTime(input);
 	}
-
+	*/
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -47,7 +50,7 @@ public abstract class Occasion {
 	
 	public Calendar setDate(String input) {
 		Calendar cal = null;
-		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 		try {
 			
 			Date d = (Date)formatter.parse(input);
@@ -61,6 +64,10 @@ public abstract class Occasion {
 		}
 		return cal;
 	}
+	
+	public abstract void setEndDate(String input);
+	
+	public abstract Calendar getEndDate();
 	
 	public void setStartDate(String input) {
 		this.startDate = setDate(input);
@@ -78,10 +85,11 @@ public abstract class Occasion {
 		return this.startDate;
 	}
 	
+	/*
 	public Calendar getStartTime() {
 		return startTime;
 	}
-	
+	*/
 	public String getStrColor() {
 		return this.strColor;
 	}

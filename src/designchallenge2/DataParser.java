@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DataParser{
+public class DataParser implements TemplateDataParser{
 	
 	
     public DataParser(String filename) {
@@ -55,10 +55,15 @@ public class DataParser{
 
 		for(String s: dataList) {
 			eventDetails = s.split(delimiter);
-			if(extension.equals("csv")) {
-				//event = new Occasion(eventDetails[0], eventDetails[1], eventDetails[2].trim());
+			if(eventDetails[0].equals("Task")) {
+				event = new Task(eventDetails[1], eventDetails[2]);
 				parsedData.add(event);
-			}	
+			}
+			
+			else if(eventDetails[0].equals("Event")) {
+				event = new Event(eventDetails[1], eventDetails[2], eventDetails[3]);
+				parsedData.add(event);
+			}
 
 //			System.out.println("Data added to "+extension);
 		}
@@ -67,7 +72,7 @@ public class DataParser{
 	
 	
 	protected List<String> dataList = new ArrayList<String>();
-	//protected List<Occasion> eventList = new ArrayList<Occasion>();
+	protected List<Occasion> eventList = new ArrayList<Occasion>();
 	protected String filename;
     protected ArrayList<Occasion> parsedData = new ArrayList<Occasion>();
 }
