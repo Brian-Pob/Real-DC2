@@ -1,10 +1,10 @@
 package designchallenge2;
-
+//model
 import java.io.File;
 
-public class DataWriter implements TemplateDataWriter{
+public class DataWriterCSV implements TemplateDataWriter{
 	
-	public DataWriter(Occasion o){
+	public DataWriterCSV(Occasion o){
     	File file;
 		file = new File("src/List of Ocassions.csv");
 		

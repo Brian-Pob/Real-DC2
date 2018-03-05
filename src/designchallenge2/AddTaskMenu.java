@@ -1,5 +1,5 @@
 package designchallenge2;
-
+//View
 import javax.swing.JFrame;
 import java.awt.GridLayout;
 import javax.swing.JLabel;

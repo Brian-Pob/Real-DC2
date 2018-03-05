@@ -1,5 +1,5 @@
 package designchallenge2;
-
+//model
 import java.awt.Color;
 import java.util.Calendar;
 

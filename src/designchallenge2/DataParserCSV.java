@@ -1,5 +1,5 @@
 package designchallenge2;
-
+//model
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DataParser implements TemplateDataParser{
+public class DataParserCSV implements TemplateDataParser{
 	
 	
-    public DataParser(String filename) {
+    public DataParserCSV(String filename) {
     	this.filename = ("src/"+filename);
     	readData();
     }

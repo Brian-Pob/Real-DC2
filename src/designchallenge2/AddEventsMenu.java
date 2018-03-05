@@ -1,5 +1,5 @@
 package designchallenge2;
-
+//View
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
