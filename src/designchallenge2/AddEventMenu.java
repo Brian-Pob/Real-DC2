@@ -34,7 +34,8 @@ public class AddEventMenu extends JFrame{
 	public AddEventMenu() {
 		eventNameInput = new JTextField();
 		eventNameInput.setColumns(10);
-		
+		setSize(500, 300);
+		setResizable(false);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

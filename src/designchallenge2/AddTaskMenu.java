@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-
+import javax.swing.WindowConstants;
 public class AddTaskMenu extends JFrame{
 	
 	private JTextField taskName;
@@ -26,12 +26,20 @@ public class AddTaskMenu extends JFrame{
 		                                                              
 		lblTaskName   = new JLabel("Task Name");                                
 		lblTaskDT     = new JLabel("Task Date & Time");                         
-		cmbTime       = new JComboBox();                                        taskName = new JTextField();
-		cmbYear       = new JComboBox();                                        taskName.setColumns(10);
+		cmbTime       = new JComboBox();                                        
+		taskName = new JTextField();
+		cmbYear       = new JComboBox();                                        
+		taskName.setColumns(10);
 		cmbDay        = new JComboBox();                                        
-		cmbMonth      = new JComboBox();                                        setTitle("AddTaskMenu");
-		lblComboLabel = new JLabel("MM           DD          YYYY       hh:mm");GroupLayout groupLayout = new GroupLayout(getContentPane());
+		cmbMonth      = new JComboBox();                                        
+		setTitle("AddTaskMenu");
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		setResizable(false);
+		lblComboLabel = new JLabel("MM           DD          YYYY       hh:mm");
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		btnAddtask    = new JButton("AddTask");        
+		
+		setSize(500, 300);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
