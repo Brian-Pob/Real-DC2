@@ -24,11 +24,12 @@ public class Event extends Occasion {
 		this.color = Color.BLUE;
 		
 	}
-
+	
+	
 	public Calendar getEndDate() {
 		return endDate;
 	}
-
+	
 	public void setEndDate(String input) {
 		this.endDate = setDate(input);
 	}

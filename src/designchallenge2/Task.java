@@ -12,6 +12,7 @@ public class Task extends Occasion{
 	public Task(String name, String startdate) {
 		setName(name);
 		setStartDate(startdate);
+		setEndDate(startdate);
 		//setStartTime(starttime);
 		setColor();
 		setType("Task");
@@ -29,6 +30,10 @@ public class Task extends Occasion{
 		cal.add(Calendar.MINUTE, 30);
 		this.endDate = cal;
 
+	}
+	
+	public Calendar getEndDate() {
+		return endDate;
 	}
 	
 	

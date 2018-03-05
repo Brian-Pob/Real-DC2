@@ -67,9 +67,7 @@ public abstract class Occasion {
 	
 	public abstract void setEndDate(String input);
 	
-	public Calendar getEndDate() {
-		return this.endDate;
-	}
+	public abstract Calendar getEndDate();
 	
 	public void setStartDate(String input) {
 		this.startDate = setDate(input);

@@ -23,7 +23,7 @@ public class Driver {
 		
 		System.out.println(e.getName() + " Start Date: " + formatter.format(e.getStartDate().getTime())
 			+" End Date: " + formatter.format(e.getEndDate().getTime()) );
-		System.out.println(t.getName() + " Start Date: " + formatter.format(t.getStartDate().getTime()));
+		System.out.println(t.getName() + " Start Date: " + formatter.format(t.getStartDate().getTime()) +" End Date: " + formatter.format(t.getEndDate().getTime()));
 		
 		
 		//testing
