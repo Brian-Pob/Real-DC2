@@ -1,6 +1,5 @@
 package designchallenge2;
 
-import java.awt.Color;
 import java.util.Calendar;
 
 public class Event extends Occasion {
@@ -15,15 +14,10 @@ public class Event extends Occasion {
 		setStartTime(starttime);
 		setEndDate(enddate);
 		setEndTime(endtime);
-		setColor();
+		setStrColor("blue");
 		setType("Event");
 	}
 	
-	@Override
-	public void setColor() {
-		this.color = Color.BLUE;
-		
-	}
 
 	public Calendar getEndDate() {
 		return endDate;

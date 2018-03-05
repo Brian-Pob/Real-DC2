@@ -44,8 +44,9 @@ public class DataParser{
 		String[] eventDetails;
 		String delimiter = "";
 		String extension = "";
-		Occasion event = null;
-		
+//		Occasion occasion = null;
+		Task task = null;
+		Event event = null;
 		int i = filename.lastIndexOf('.');
 		if (i > 0) {
 		    extension = filename.substring(i+1);
@@ -57,7 +58,16 @@ public class DataParser{
 			eventDetails = s.split(delimiter);
 			if(extension.equals("csv")) {
 				//event = new Occasion(eventDetails[0], eventDetails[1], eventDetails[2].trim());
-				parsedData.add(event);
+				if(eventDetails[0].equalsIgnoreCase("task")) {
+					task = new Task(eventDetails[1],eventDetails[2],eventDetails[3]);
+					parsedData.add(task);
+				}
+					
+				else if(eventDetails[0].equalsIgnoreCase("event")) {
+					event = new Event(eventDetails[1],eventDetails[2],eventDetails[3],eventDetails[4],eventDetails[5]);
+					parsedData.add(event);
+				}
+				
 			}	
 
 //			System.out.println("Data added to "+extension);

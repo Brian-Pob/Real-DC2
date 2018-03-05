@@ -1,6 +1,5 @@
 package designchallenge2;
 
-import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,7 +10,6 @@ import java.util.Date;
 public abstract class Occasion {
 	protected Calendar startDate;
 	protected String name;
-	protected Color color;
 	protected String strColor; 
 	protected Calendar startTime;
 	protected String Type;
@@ -42,9 +40,6 @@ public abstract class Occasion {
 		this.name = name;
 	}
 	
-	public abstract void setColor();
-	
-	
 	public Calendar setDate(String input) {
 		Calendar cal = null;
 		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
@@ -70,9 +65,6 @@ public abstract class Occasion {
 		return name;
 	}
 
-	public Color getColor() {
-		return color;
-	}
 
 	public Calendar getStartDate() {
 		return this.startDate;
@@ -92,6 +84,10 @@ public abstract class Occasion {
 
 	public void setType(String type) {
 		Type = type;
+	}
+
+	public void setStrColor(String strColor) {
+		this.strColor = strColor;
 	}
 	
 }

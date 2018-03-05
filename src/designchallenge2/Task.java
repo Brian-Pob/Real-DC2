@@ -1,6 +1,5 @@
 package designchallenge2;
 
-import java.awt.Color;
 
 public class Task extends Occasion{
 	
@@ -8,14 +7,9 @@ public class Task extends Occasion{
 		setName(name);
 		setStartDate(startdate);
 		setStartTime(starttime);
-		setColor();
+		setStrColor("green");
 		setType("Task");
 	}
 
-	@Override
-	public void setColor() {
-		this.color = Color.GREEN;
-		
-	}
 
 }
