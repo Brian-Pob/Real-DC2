@@ -29,7 +29,7 @@ public class AddTaskMenu extends JFrame{
 		
 		JComboBox cmbMonth = new JComboBox();
 		
-		JLabel lblComboLabel = new JLabel("MM           DD          YYYY       hh:mm        ");
+		JLabel lblComboLabel = new JLabel("MM           DD          YYYY       hh:mm");
 		
 		JButton btnAddtask = new JButton("AddTask");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
