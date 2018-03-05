@@ -12,26 +12,22 @@ import javax.swing.JButton;
 
 public class AddTaskMenu extends JFrame{
 	private JTextField taskName;
+	private JLabel lblTaskName = new JLabel("Task Name");
+	private JLabel lblTaskDT = new JLabel("Task Date & Time");
+	private JComboBox cmbHour = new JComboBox();
+	private JComboBox cmbYear = new JComboBox();
+	private JComboBox cmbDay = new JComboBox();
+	private JComboBox cmbMonth = new JComboBox();
+	private JLabel lblComboLabel = new JLabel("MM           DD          YYYY       hh:mm");
+	private JButton btnAddtask = new JButton("AddTask");
 	public AddTaskMenu() {
 		
-		JLabel lblTaskName = new JLabel("Task Name");
 		
-		JLabel lblTaskDT = new JLabel("Task Date & Time");
 		
 		taskName = new JTextField();
 		taskName.setColumns(10);
 		
-		JComboBox cmbHour = new JComboBox();
 		
-		JComboBox cmbYear = new JComboBox();
-		
-		JComboBox cmbDay = new JComboBox();
-		
-		JComboBox cmbMonth = new JComboBox();
-		
-		JLabel lblComboLabel = new JLabel("MM           DD          YYYY       hh:mm");
-		
-		JButton btnAddtask = new JButton("AddTask");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -80,5 +76,23 @@ public class AddTaskMenu extends JFrame{
 					.addGap(158))
 		);
 		getContentPane().setLayout(groupLayout);
+	}
+	public JTextField getTaskName() {
+		return taskName;
+	}
+	public JComboBox getCmbHour() {
+		return cmbHour;
+	}
+	public JComboBox getCmbYear() {
+		return cmbYear;
+	}
+	public JComboBox getCmbDay() {
+		return cmbDay;
+	}
+	public JComboBox getCmbMonth() {
+		return cmbMonth;
+	}
+	public JButton getBtnAddtask() {
+		return btnAddtask;
 	}
 }

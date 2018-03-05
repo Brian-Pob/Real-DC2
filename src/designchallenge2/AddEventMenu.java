@@ -13,38 +13,28 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class AddEventsMenu extends JFrame{
+public class AddEventMenu extends JFrame{
 	private JTextField eventNameInput;
-	public AddEventsMenu() {
-		
+	
+	
+	private JButton btnAddEvent = new JButton("Add Event");
+	private JLabel startLabel = new JLabel("Start Date & Time");
+	private JComboBox cmbStartMonth = new JComboBox();
+	private JComboBox cmbStartDay = new JComboBox();
+	private JComboBox cmbStartTime = new JComboBox();
+	private JComboBox cmbEndTime = new JComboBox();
+	private JLabel endLabel = new JLabel("End Date & Time");
+	private JComboBox cmbEndDay = new JComboBox();
+	private JComboBox cmbEndMonth = new JComboBox();
+	private JComboBox cmbEndYear = new JComboBox();	
+	private JComboBox cmbStartYear = new JComboBox();	
+	private JLabel lblEventName = new JLabel("Event Name");
+	private JLabel lblCmbLabel = new JLabel("MM           DD          YYYY       hh:mm");
+	
+	public AddEventMenu() {
 		eventNameInput = new JTextField();
 		eventNameInput.setColumns(10);
 		
-		JButton btnAddEvent = new JButton("Add Event");
-		
-		JLabel startLabel = new JLabel("Start Date & Time");
-		
-		JComboBox cmbStartMonth = new JComboBox();
-		
-		JComboBox cmbStartDay = new JComboBox();
-		
-		JComboBox cmbStartTime = new JComboBox();
-		
-		JComboBox cmbEndTime = new JComboBox();
-		
-		JLabel endLabel = new JLabel("End Date & Time");
-		
-		JComboBox cmbEndDay = new JComboBox();
-		
-		JComboBox cmbEndMonth = new JComboBox();
-		
-		JComboBox cmbEndYear = new JComboBox();
-		
-		JComboBox cmbStartYear = new JComboBox();
-		
-		JLabel lblEventName = new JLabel("Event Name");
-		
-		JLabel lblCmbLabel = new JLabel("MM           DD          YYYY       hh:mm");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -110,5 +100,50 @@ public class AddEventsMenu extends JFrame{
 		);
 		getContentPane().setLayout(groupLayout);
 		JFrame jf = new JFrame();
+	}
+	
+	public JTextField getEventNameInput() {
+		return eventNameInput;
+	}
+	public void setEventNameInput(JTextField eventNameInput) {
+		this.eventNameInput = eventNameInput;
+	}
+	public JComboBox getCmbStartMonth() {
+		return  cmbStartMonth;
+	}
+	public JButton getBtnAddEvent() {
+		return btnAddEvent;
+	}
+
+	public void setBtnAddEvent(JButton btnAddEvent) {
+		this.btnAddEvent = btnAddEvent;
+	}
+
+	public JComboBox getCmbStartDay() {
+		return cmbStartDay;
+	}
+
+	public JComboBox getCmbStartTime() {
+		return cmbStartTime;
+	}
+
+	public JComboBox getCmbEndTime() {
+		return cmbEndTime;
+	}
+
+	public JComboBox getCmbEndDay() {
+		return cmbEndDay;
+	}
+
+	public JComboBox getCmbEndMonth() {
+		return cmbEndMonth;
+	}
+
+	public JComboBox getCmbEndYear() {
+		return cmbEndYear;
+	}
+
+	public JComboBox getCmbStartYear() {
+		return cmbStartYear;
 	}
 }
