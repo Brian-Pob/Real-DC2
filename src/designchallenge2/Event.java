@@ -30,7 +30,7 @@ public class Event extends Occasion {
 	}
 	
 	public void setEndDate(String input) {
-		this.endDate = setDate(input);
+		this.endDate = convertDate(input);
 	}
 	
 	/*

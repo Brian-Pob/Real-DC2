@@ -47,7 +47,7 @@ public abstract class Occasion {
 	public abstract void setColor();
 	
 	
-	public Calendar setDate(String input) {
+	public Calendar convertDate(String input) {
 		Calendar cal = null;
 		DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 		try {
@@ -69,7 +69,7 @@ public abstract class Occasion {
 	public abstract Calendar getEndDate();
 	
 	public void setStartDate(String input) {
-		this.startDate = setDate(input);
+		this.startDate = convertDate(input);
 	}
 	
 	public String getName() {
