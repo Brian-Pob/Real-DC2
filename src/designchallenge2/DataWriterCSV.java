@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DataWriterCSV implements TemplateDataWriter{
-	
+	//random comment
 	public DataWriterCSV(ArrayList<Occasion> o){
     	File file;
 		file = new File("src/List of Occasions.csv");
