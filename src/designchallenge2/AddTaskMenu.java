@@ -56,8 +56,8 @@ public class AddTaskMenu extends JFrame {
 
 		do {
 			timeString = Integer.toString(start.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(start.get(Calendar.MINUTE));
-			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
-				timeString = "0"+timeString;
+//			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
+//				timeString = "0"+timeString;
 			if(start.get(Calendar.MINUTE) <= 9)
 				timeString = timeString+"0";
 			
@@ -67,11 +67,17 @@ public class AddTaskMenu extends JFrame {
 		int hourBound = gCal.get(GregorianCalendar.HOUR_OF_DAY);
 		int minuteBound = gCal.get(GregorianCalendar.MINUTE);
 		//System.out.println(minuteBound);
-		if(minuteBound < 15 || minuteBound >= 45)
-			minuteBound = 0;
-		else if(minuteBound >= 15 || minuteBound < 45)
+		if(minuteBound <= 30)
 			minuteBound = 30;
-		
+		else if(minuteBound > 30) {
+			minuteBound = 0;
+			hourBound++;
+		}
+		String curTime = hourBound+":"+minuteBound;
+		if(minuteBound == 0)
+			curTime = curTime+"0";
+		System.out.println(curTime);
+		cmbTime.setSelectedItem(curTime);
 		
 		int yearBound = gCal.get(GregorianCalendar.YEAR);
 		for(int i = yearBound-100; i <= yearBound+100; i++) {
