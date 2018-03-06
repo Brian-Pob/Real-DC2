@@ -1,126 +1,132 @@
 package designchallenge2;
-//View
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import java.util.Calendar;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
-import javax.swing.WindowConstants;
-public class AddTaskMenu extends JFrame{
-	
-	private JTextField taskName;
-	private JLabel     lblTaskName   ;
-	private JLabel     lblTaskDT     ;
-	private JComboBox  cmbTime       ;
-	private JComboBox  cmbYear       ;
-	private JComboBox  cmbDay        ;
-	private JComboBox  cmbMonth      ;
-	private JLabel     lblComboLabel ;
-	private JButton    btnAddtask    ;
-	
-	//initComponents
+import javax.swing.JComboBox;
+import java.awt.Dimension;
+import java.util.Calendar;
+
+public class AddTaskMenu extends JFrame {
+	private JLabel lblTaskName;
+	private JLabel lblTaskDate;
+	private JTextField textTaskName;
+	private JButton btnAddTask;
+	private JComboBox cmbMonth;
+	private JComboBox cmbDay;
+	private JComboBox cmbYear;
+	private JComboBox cmbTime;
+	private JLabel lblMonthDayYear;
 	public AddTaskMenu() {
-		                                                              
-		lblTaskName   = new JLabel("Task Name");                                
-		lblTaskDT     = new JLabel("Task Date & Time");                         
-		cmbTime       = new JComboBox();                                        
-		taskName = new JTextField();
-		cmbYear       = new JComboBox();                                        
-		taskName.setColumns(10);
-		cmbDay        = new JComboBox();                                        
-		cmbMonth      = new JComboBox();                                        
+		setVisible(true);
 		setTitle("AddTaskMenu");
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		setResizable(false);
-		lblComboLabel = new JLabel("MM           DD          YYYY       hh:mm");
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		btnAddtask    = new JButton("AddTask");        
+		setSize(new Dimension(500, 300));
+		
+		lblTaskName = new JLabel("Task Name:");
+		
+		lblTaskDate = new JLabel("Task Date & Time:");
+		
+		textTaskName = new JTextField();
+		textTaskName.setColumns(10);
+		
+		btnAddTask = new JButton("AddTask");
+		
+		cmbMonth = new JComboBox();
+		
+		cmbDay = new JComboBox();
+		
+		cmbYear = new JComboBox();
+		
+		cmbTime = new JComboBox();
 		
 		Calendar start = Calendar.getInstance();
 		start.set(Calendar.HOUR_OF_DAY, 0);
 		start.set(Calendar.MINUTE, 0);
 		Calendar end = Calendar.getInstance();
 		end.set(Calendar.HOUR_OF_DAY, 23);
-		end.set(Calendar.MINUTE, 30);
+		end.set(Calendar.MINUTE, 59);
 		String timeString = "";
 		do {
 			timeString = Integer.toString(start.getTime().getHours())+":"+Integer.toString(start.getTime().getMinutes());
+			if(start.getTime().getHours() <= 9)
+				timeString = "0"+timeString;
+			if(start.getTime().getMinutes() <= 9)
+				timeString = timeString+"0";
+			
 			cmbTime.addItem(timeString);
 			start.add(Calendar.MINUTE, 30);
 		}while(start.getTime().before(end.getTime()));
 		
-		setSize(500, 300);
+		lblMonthDayYear = new JLabel("Month          Day             Year            Time");
+		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-							.addComponent(lblTaskName)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(taskName, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblTaskDT)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(lblTaskName)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(textTaskName, GroupLayout.PREFERRED_SIZE, 243, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnAddTask))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblTaskDate)
+							.addGap(18)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblComboLabel)
+								.addComponent(lblMonthDayYear)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(cmbMonth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(cmbDay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(cmbYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(cmbTime, GroupLayout.PREFERRED_SIZE, 36, GroupLayout.PREFERRED_SIZE)))
-							.addGap(10)))
-					.addPreferredGap(ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-					.addComponent(btnAddtask)
-					.addContainerGap())
+									.addComponent(cmbMonth, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(cmbDay, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.UNRELATED)
+									.addComponent(cmbYear, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(cmbTime, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)))))
+					.addContainerGap(30, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGap(53)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblTaskName)
-						.addComponent(taskName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAddtask))
-					.addGap(12)
-					.addComponent(lblComboLabel)
+						.addComponent(textTaskName, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnAddTask))
+					.addGap(20)
+					.addComponent(lblMonthDayYear)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblTaskDT)
-						.addComponent(cmbTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cmbYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTaskDate)
+						.addComponent(cmbMonth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(cmbDay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cmbMonth, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(158))
+						.addComponent(cmbYear, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cmbTime, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(120, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
-	}//end of init components
-	
-	public JTextField getTaskName() {
-		return taskName;
 	}
-	public JComboBox getCmbTime() {
-		return cmbTime;
+	public JTextField getTextTaskName() {
+		return textTaskName;
 	}
-	public JComboBox getCmbYear() {
-		return cmbYear;
-	}
-	public JComboBox getCmbDay() {
-		return cmbDay;
+	public JButton getBtnAddTask() {
+		return btnAddTask;
 	}
 	public JComboBox getCmbMonth() {
 		return cmbMonth;
 	}
-	public JButton getBtnAddtask() {
-		return btnAddtask;
+	public JComboBox getCmbDay() {
+		return cmbDay;
 	}
+	public JComboBox getCmbYear() {
+		return cmbYear;
+	}
+	public JComboBox getCmbTime() {
+		return cmbTime;
+	}
+
 }

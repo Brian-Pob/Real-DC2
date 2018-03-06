@@ -41,8 +41,8 @@ public class AgendaControl {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if(!taskMenu.getTaskName().getText().equals("")) {
-				task = new Task(taskMenu.getTaskName().getText(),				//task name
+			if(!taskMenu.getTextTaskName().getText().equals("")) {
+				task = new Task(taskMenu.getTextTaskName().getText(),				//task name
 						
 								 taskMenu.getCmbMonth().getSelectedItem()+"/" 	//task start date and time
 								+taskMenu.getCmbDay().getSelectedItem()+"/"
