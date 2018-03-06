@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import java.awt.Dimension;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class AddTaskMenu extends JFrame {
 	private JLabel lblTaskName;
@@ -22,6 +23,7 @@ public class AddTaskMenu extends JFrame {
 	private JComboBox cmbTime;
 	private JLabel lblMonthDayYear;
 	public AddTaskMenu() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setTitle("AddTaskMenu");
 		setSize(new Dimension(500, 300));
@@ -50,16 +52,44 @@ public class AddTaskMenu extends JFrame {
 		end.set(Calendar.HOUR_OF_DAY, 23);
 		end.set(Calendar.MINUTE, 59);
 		String timeString = "";
+		GregorianCalendar gCal = new GregorianCalendar();
+
 		do {
-			timeString = Integer.toString(start.getTime().getHours())+":"+Integer.toString(start.getTime().getMinutes());
-			if(start.getTime().getHours() <= 9)
+			timeString = Integer.toString(start.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(start.get(Calendar.MINUTE));
+			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
 				timeString = "0"+timeString;
-			if(start.getTime().getMinutes() <= 9)
+			if(start.get(Calendar.MINUTE) <= 9)
 				timeString = timeString+"0";
 			
 			cmbTime.addItem(timeString);
 			start.add(Calendar.MINUTE, 30);
 		}while(start.getTime().before(end.getTime()));
+		int hourBound = gCal.get(GregorianCalendar.HOUR_OF_DAY);
+		int minuteBound = gCal.get(GregorianCalendar.MINUTE);
+		//System.out.println(minuteBound);
+		if(minuteBound < 15 || minuteBound >= 45)
+			minuteBound = 0;
+		else if(minuteBound >= 15 || minuteBound < 45)
+			minuteBound = 30;
+		
+		
+		int yearBound = gCal.get(GregorianCalendar.YEAR);
+		for(int i = yearBound-100; i <= yearBound+100; i++) {
+			cmbYear.addItem(i);
+		}
+		cmbYear.setSelectedIndex(100);
+		
+		int monthBound = gCal.get(GregorianCalendar.MONTH);
+		for(int i = 1; i<=12; i++) {
+			cmbMonth.addItem(i);
+		}
+		cmbMonth.setSelectedIndex(monthBound);
+		
+		int dayBound = gCal.get(GregorianCalendar.DATE);
+		for(int i = 1; i <= 31; i++) {
+			cmbDay.addItem(i);
+		}
+		cmbDay.setSelectedIndex(dayBound-1);
 		
 		lblMonthDayYear = new JLabel("Month          Day             Year            Time");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());

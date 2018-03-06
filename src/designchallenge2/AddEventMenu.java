@@ -33,6 +33,7 @@ public class AddEventMenu extends JFrame{
 	private JLabel lblCmbLabel = new JLabel("MM           DD          YYYY       hh:mm");
 	
 	public AddEventMenu() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		
