@@ -1,6 +1,6 @@
 package designchallenge2;
 //model
-import java.awt.Color;
+//import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,12 +14,12 @@ public class Task extends Occasion{
 		setStartDate(startdate);
 		setEndDate(startdate);
 		//setStartTime(starttime);
-		setColor();
+		setStrColor();
 	}
 
 	@Override
-	public void setColor() {
-		this.color = Color.GREEN;
+	public void setStrColor() {
+		this.strColor = "green";
 		
 	}
 

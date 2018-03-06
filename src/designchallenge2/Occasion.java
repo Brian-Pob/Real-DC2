@@ -12,7 +12,7 @@ public abstract class Occasion {
 	protected Calendar startDate;
 	protected Calendar endDate;
 	protected String name;
-	protected Color color;
+//	protected Color color;
 	protected String strColor; 
 	//protected Calendar startTime;
 	
@@ -44,7 +44,7 @@ public abstract class Occasion {
 		this.name = name;
 	}
 	
-	public abstract void setColor();
+	public abstract void setStrColor();
 	
 	
 	public Calendar convertDate(String input) {
@@ -76,9 +76,9 @@ public abstract class Occasion {
 		return name;
 	}
 
-	public Color getColor() {
-		return color;
-	}
+//	public Color getColor() {
+//		return color;
+//	}
 
 	public Calendar getStartDate() {
 		return this.startDate;

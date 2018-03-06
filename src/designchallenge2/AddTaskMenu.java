@@ -2,6 +2,9 @@ package designchallenge2;
 //View
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import java.util.Calendar;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTextField;
@@ -38,6 +41,19 @@ public class AddTaskMenu extends JFrame{
 		lblComboLabel = new JLabel("MM           DD          YYYY       hh:mm");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		btnAddtask    = new JButton("AddTask");        
+		
+		Calendar start = Calendar.getInstance();
+		start.set(Calendar.HOUR_OF_DAY, 0);
+		start.set(Calendar.MINUTE, 0);
+		Calendar end = Calendar.getInstance();
+		end.set(Calendar.HOUR_OF_DAY, 23);
+		end.set(Calendar.MINUTE, 30);
+		String timeString = "";
+		do {
+			timeString = Integer.toString(start.getTime().getHours())+":"+Integer.toString(start.getTime().getMinutes());
+			cmbTime.addItem(timeString);
+			start.add(Calendar.MINUTE, 30);
+		}while(start.getTime().before(end.getTime()));
 		
 		setSize(500, 300);
 		groupLayout.setHorizontalGroup(

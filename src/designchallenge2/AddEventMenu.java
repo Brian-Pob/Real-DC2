@@ -1,6 +1,6 @@
 package designchallenge2;
 //View
-//testing
+
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
@@ -33,6 +33,9 @@ public class AddEventMenu extends JFrame{
 	private JLabel lblCmbLabel = new JLabel("MM           DD          YYYY       hh:mm");
 	
 	public AddEventMenu() {
+		
+		
+		
 		eventNameInput = new JTextField();
 		eventNameInput.setColumns(10);
 		setSize(500, 300);
@@ -54,25 +57,25 @@ public class AddEventMenu extends JFrame{
 								.addComponent(startLabel)
 								.addComponent(endLabel))
 							.addGap(25)
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblCmbLabel)
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(cmbEndMonth, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(cmbStartMonth, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addGap(21)
+										.addComponent(cmbStartMonth, 0, 39, Short.MAX_VALUE))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(cmbEndDay, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(cmbStartDay, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addGap(17)
+										.addComponent(cmbStartDay, 0, 35, Short.MAX_VALUE))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(cmbEndYear, 0, 0, Short.MAX_VALUE)
-										.addComponent(cmbStartYear, 0, 26, Short.MAX_VALUE))
-									.addGap(18)
+										.addComponent(cmbStartYear, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(cmbEndYear, 0, 34, Short.MAX_VALUE))
+									.addPreferredGap(ComponentPlacement.UNRELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 										.addComponent(cmbEndTime, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addComponent(cmbStartTime, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-					.addContainerGap(14, Short.MAX_VALUE))
+										.addComponent(cmbStartTime, 0, 46, Short.MAX_VALUE))))))
+					.addContainerGap(68, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
