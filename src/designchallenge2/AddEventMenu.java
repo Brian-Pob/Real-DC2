@@ -46,7 +46,9 @@ public class AddEventMenu extends JFrame{
 		String timeString = "";
 		GregorianCalendar gCal = new GregorianCalendar();
 		
-	
+
+		
+
 		
 		int yearBound = gCal.get(GregorianCalendar.YEAR);
 		for(int i = yearBound-100; i <= yearBound+100; i++) {
@@ -55,6 +57,7 @@ public class AddEventMenu extends JFrame{
 		}
 		cmbStartYear.setSelectedIndex(100);
 		cmbEndYear.setSelectedIndex(100);
+
 		
 		int monthBound = gCal.get(GregorianCalendar.MONTH);
 		for(int i = 1; i<=12; i++) {
@@ -71,8 +74,7 @@ public class AddEventMenu extends JFrame{
 		}
 		cmbStartDay.setSelectedIndex(dayBound-1);
 		cmbEndDay.setSelectedIndex(dayBound-1);
-		
-		//populating cmbTimes
+
 		do {
 			timeString = Integer.toString(start.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(start.get(Calendar.MINUTE));
 //			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
@@ -92,13 +94,16 @@ public class AddEventMenu extends JFrame{
 		else if(minuteBound > 30) {
 			minuteBound = 0;
 			hourBound++;
-			if(hourBound == 24)
+			if(hourBound == 24) {
 				hourBound = 0;
+				cmbStartDay.setSelectedItem(cmbStartDay.getSelectedIndex()+2);
+			}
 		}
 		String curTime = hourBound+":"+minuteBound;
 		if(minuteBound == 0)
 			curTime = curTime+"0";
 		cmbStartTime.setSelectedItem(curTime);
+		
 		if(minuteBound == 30) {
 			minuteBound = 0;
 			hourBound++;
@@ -108,6 +113,10 @@ public class AddEventMenu extends JFrame{
 			}
 		}else if(minuteBound == 0) {
 			minuteBound = 30;
+			if(hourBound == 0) {
+//				hourBound = 0;
+				cmbEndDay.setSelectedItem(cmbEndDay.getSelectedIndex()+2);
+			}
 		}
 		curTime = hourBound+":"+minuteBound;
 		if(minuteBound == 0)
