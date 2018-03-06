@@ -15,7 +15,6 @@ public abstract class Occasion {
 	protected Color color;
 	protected String strColor; 
 	//protected Calendar startTime;
-	protected String Type;
 	
 	/*
 	public Calendar setTime(String input) {
@@ -94,12 +93,5 @@ public abstract class Occasion {
 		return this.strColor;
 	}
 
-	public String getType() {
-		return Type;
-	}
-
-	public void setType(String type) {
-		Type = type;
-	}
 	
 }

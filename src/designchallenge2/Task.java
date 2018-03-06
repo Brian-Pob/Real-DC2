@@ -15,7 +15,6 @@ public class Task extends Occasion{
 		setEndDate(startdate);
 		//setStartTime(starttime);
 		setColor();
-		setType("Task");
 	}
 
 	@Override
