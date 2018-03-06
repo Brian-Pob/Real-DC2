@@ -8,6 +8,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 import java.awt.Insets;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.GroupLayout;
@@ -34,8 +37,91 @@ public class AddEventMenu extends JFrame{
 	
 	public AddEventMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Calendar start = Calendar.getInstance();
+		start.set(Calendar.HOUR_OF_DAY, 0);
+		start.set(Calendar.MINUTE, 0);
+		Calendar end = Calendar.getInstance();
+		end.set(Calendar.HOUR_OF_DAY, 23);
+		end.set(Calendar.MINUTE, 59);
+		String timeString = "";
+		GregorianCalendar gCal = new GregorianCalendar();
 		
+
 		
+
+		
+		int yearBound = gCal.get(GregorianCalendar.YEAR);
+		for(int i = yearBound-100; i <= yearBound+100; i++) {
+			cmbStartYear.addItem(i);
+			cmbEndYear.addItem(i);
+		}
+		cmbStartYear.setSelectedIndex(100);
+		cmbEndYear.setSelectedIndex(100);
+
+		
+		int monthBound = gCal.get(GregorianCalendar.MONTH);
+		for(int i = 1; i<=12; i++) {
+			cmbStartMonth.addItem(i);
+			cmbEndMonth.addItem(i);
+		}
+		cmbStartMonth.setSelectedIndex(monthBound);
+		cmbEndMonth.setSelectedIndex(monthBound);
+
+		int dayBound = gCal.get(GregorianCalendar.DATE);
+		for(int i = 1; i <= 31; i++) {
+			cmbStartDay.addItem(i);
+			cmbEndDay.addItem(i);
+		}
+		cmbStartDay.setSelectedIndex(dayBound-1);
+		cmbEndDay.setSelectedIndex(dayBound-1);
+
+		do {
+			timeString = Integer.toString(start.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(start.get(Calendar.MINUTE));
+//			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
+//				timeString = "0"+timeString;
+			if(start.get(Calendar.MINUTE) <= 9)
+				timeString = timeString+"0";
+			
+			cmbStartTime.addItem(timeString);
+			cmbEndTime.addItem(timeString);
+			start.add(Calendar.MINUTE, 30);
+		}while(start.getTime().before(end.getTime()));
+		int hourBound = gCal.get(GregorianCalendar.HOUR_OF_DAY);
+		int minuteBound = gCal.get(GregorianCalendar.MINUTE);
+		//System.out.println(minuteBound);
+		if(minuteBound <= 30)
+			minuteBound = 30;
+		else if(minuteBound > 30) {
+			minuteBound = 0;
+			hourBound++;
+			if(hourBound == 24) {
+				hourBound = 0;
+				cmbStartDay.setSelectedItem(cmbStartDay.getSelectedIndex()+2);
+			}
+		}
+		String curTime = hourBound+":"+minuteBound;
+		if(minuteBound == 0)
+			curTime = curTime+"0";
+		cmbStartTime.setSelectedItem(curTime);
+		
+		if(minuteBound == 30) {
+			minuteBound = 0;
+			hourBound++;
+			if(hourBound == 24) {
+				hourBound = 0;
+				cmbEndDay.setSelectedItem(cmbEndDay.getSelectedIndex()+2);
+			}
+		}else if(minuteBound == 0) {
+			minuteBound = 30;
+			if(hourBound == 0) {
+//				hourBound = 0;
+				cmbEndDay.setSelectedItem(cmbEndDay.getSelectedIndex()+2);
+			}
+		}
+		curTime = hourBound+":"+minuteBound;
+		if(minuteBound == 0)
+			curTime = curTime+"0";
+		cmbEndTime.setSelectedItem(curTime);
 		
 		eventNameInput = new JTextField();
 		eventNameInput.setColumns(10);
