@@ -5,6 +5,12 @@ import java.util.ArrayList;
 public class AgendaModel {
 	private DataParserCSV dp;
 	private DataWriterCSV dw;
+	private AgendaView av;
+	
+	public AgendaModel(AgendaView av) {
+		this.av = av;
+		importOccasions();
+	}
 	
 	public void importOccasions(){
     
@@ -12,6 +18,7 @@ public class AgendaModel {
         try {
 			dp = new DataParserCSV("List of Occasions.csv");
 			//AgendaView.addAllEvents(dp.processData());
+			av.updateView(dp.processData());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -26,7 +33,7 @@ public class AgendaModel {
     	ArrayList<Occasion> occasionsList = new ArrayList<Occasion>(dp.processData());
     	occasionsList.add(occasion);
     	exportOccasions(occasionsList);
-    	
+    	importOccasions();
     	//update view
     }
     
@@ -34,6 +41,7 @@ public class AgendaModel {
     	ArrayList<Occasion> occasionsList = new ArrayList<Occasion>(dp.processData());
     	occasionsList.remove(occasion);
     	exportOccasions(occasionsList);
+    	importOccasions();
     	//update view
     }
 }

@@ -45,7 +45,7 @@ public class AddEventMenu extends JFrame{
 		end.set(Calendar.MINUTE, 59);
 		String timeString = "";
 		GregorianCalendar gCal = new GregorianCalendar();
-		
+		System.out.println("Add Event View Added");
 
 		int yearBound = gCal.get(GregorianCalendar.YEAR);
 		for(int i = yearBound-100; i <= yearBound+100; i++) {

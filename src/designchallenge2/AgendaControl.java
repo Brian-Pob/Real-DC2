@@ -9,7 +9,7 @@ public class AgendaControl {
 	private AddTaskMenu taskMenu;
 	private AddEventMenu eventMenu;
 	private AgendaModel am;
-	
+	private AgendaView av;
 	public void addOccasion(Occasion occasion) {
 		am.addOccasion(occasion);
 	}
@@ -20,6 +20,10 @@ public class AgendaControl {
 	
 	public void attachModel(AgendaModel am) {
 		this.am = am;
+	}
+
+	public void attachView(AgendaView av) {
+		this.av = av;
 	}
 	public class AddEventButtonListener implements ActionListener {
 		Event event;
@@ -75,6 +79,11 @@ public class AgendaControl {
 		this.eventMenu = eventMenu;
 		this.eventMenu.getBtnAddEvent().addActionListener(new AddEventButtonListener());
 	}
+
+	public AgendaView getAv() {
+		return av;
+	}
+
 
 	public AddTaskMenu getTaskMenu() {
 		return taskMenu;
