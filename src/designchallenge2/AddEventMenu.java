@@ -37,6 +37,7 @@ public class AddEventMenu extends JFrame{
 	
 	public AddEventMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+<<<<<<< Updated upstream
 		Calendar start = Calendar.getInstance();
 		start.set(Calendar.HOUR_OF_DAY, 0);
 		start.set(Calendar.MINUTE, 0);
