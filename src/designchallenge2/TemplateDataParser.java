@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface TemplateDataParser {
 	
-	public void readData();
+	public ArrayList<String> readData();
 	public ArrayList<Occasion> processData();
 
 }

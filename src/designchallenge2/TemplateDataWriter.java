@@ -6,6 +6,6 @@ import java.util.ArrayList;
 public interface TemplateDataWriter {
 
 	public void writeFile(ArrayList<Occasion> o );
-	public String format(ArrayList<Occasion> o );
+	public String convertToString(ArrayList<Occasion> o );
 	
 }

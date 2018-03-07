@@ -13,10 +13,10 @@ public class DataParserCSV implements TemplateDataParser{
 	
     public DataParserCSV(String filename) {
     	this.filename = ("src/"+filename);
-    	readData();
     }
 	
-	public void readData() {
+	public ArrayList<String> readData() {
+		ArrayList<String> dataList = new ArrayList<String>();
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(filename));
@@ -38,13 +38,16 @@ public class DataParserCSV implements TemplateDataParser{
 				e.printStackTrace();
 			}
 		}
+		return dataList;
 		
 	}
 	public ArrayList<Occasion> processData(){
 		String[] eventDetails;
 		String delimiter = "";
 		String extension = "";
+		ArrayList<Occasion> parsedData = new ArrayList<Occasion>();
 		Occasion event = null;
+		ArrayList<String> dataList = new ArrayList<String>(readData());
 		
 		int i = filename.lastIndexOf('.');
 		if (i > 0) {
@@ -52,7 +55,7 @@ public class DataParserCSV implements TemplateDataParser{
 		}
 		if(extension.equals("csv")) 
 			delimiter = ",";
-
+		
 		for(String s: dataList) {
 			eventDetails = s.split(delimiter);
 			if(eventDetails[0].equals("Task")) {
@@ -71,8 +74,7 @@ public class DataParserCSV implements TemplateDataParser{
 	}
 	
 	
-	protected List<String> dataList = new ArrayList<String>();
-	protected List<Occasion> eventList = new ArrayList<Occasion>();
+	
 	protected String filename;
-    protected ArrayList<Occasion> parsedData = new ArrayList<Occasion>();
+    
 }
