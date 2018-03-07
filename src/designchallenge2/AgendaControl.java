@@ -9,8 +9,19 @@ public class AgendaControl {
 	private AddTaskMenu taskMenu;
 	private AddEventMenu eventMenu;
 	private ArrayList<Occasion> occasionsList = new ArrayList<Occasion>();
+	private AgendaModel am;
 	
+	public void addOccasion(Occasion occasion) {
+		occasionsList.add(occasion);
+	}
 	
+	public void removeOccasion(Occasion occasion) {
+		occasionsList.remove(occasion);
+	}
+	
+	public void attachModel(AgendaModel am) {
+		this.am = am;
+	}
 	public class AddEventButtonListener implements ActionListener {
 		Event event;
 		@Override
@@ -54,5 +65,17 @@ public class AgendaControl {
 			//refreshAgenda
 		}
 		
+	}
+
+	public AddTaskMenu getTaskMenu() {
+		return taskMenu;
+	}
+
+	public AddEventMenu getEventMenu() {
+		return eventMenu;
+	}
+
+	public ArrayList<Occasion> getOccasionsList() {
+		return occasionsList;
 	}
 }

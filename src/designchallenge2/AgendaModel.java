@@ -2,7 +2,7 @@ package designchallenge2;
 
 import java.util.ArrayList;
 
-public class Model {
+public class AgendaModel {
 	private DataParserCSV dp;
 	private DataWriterCSV dw;
 	
