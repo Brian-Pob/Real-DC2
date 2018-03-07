@@ -50,6 +50,8 @@ public class AddEventMenu extends JFrame{
 
 		
 
+=======
+>>>>>>> Stashed changes
 		
 		int yearBound = gCal.get(GregorianCalendar.YEAR);
 		for(int i = yearBound-100; i <= yearBound+100; i++) {
