@@ -66,12 +66,14 @@ public class AgendaControl {
 		
 	}
 
-	public void setTaskMenu(AddTaskMenu taskMenu) {
+	public void attachTaskMenu(AddTaskMenu taskMenu) {
 		this.taskMenu = taskMenu;
+		this.taskMenu.getBtnAddTask().addActionListener(new AddTaskButtonListener());
 	}
 
-	public void setEventMenu(AddEventMenu eventMenu) {
+	public void attachEventMenu(AddEventMenu eventMenu) {
 		this.eventMenu = eventMenu;
+		this.eventMenu.getBtnAddEvent().addActionListener(new AddEventButtonListener());
 	}
 
 	public AddTaskMenu getTaskMenu() {
