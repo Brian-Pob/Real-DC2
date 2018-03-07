@@ -8,15 +8,14 @@ import java.util.ArrayList;
 public class AgendaControl {
 	private AddTaskMenu taskMenu;
 	private AddEventMenu eventMenu;
-	private ArrayList<Occasion> occasionsList = new ArrayList<Occasion>();
 	private AgendaModel am;
 	
 	public void addOccasion(Occasion occasion) {
-		occasionsList.add(occasion);
+		am.addOccasion(occasion);
 	}
 	
 	public void removeOccasion(Occasion occasion) {
-		occasionsList.remove(occasion);
+		am.removeOccasion(occasion);
 	}
 	
 	public void attachModel(AgendaModel am) {
@@ -41,7 +40,7 @@ public class AgendaControl {
 								 +eventMenu.getCmbEndYear().getSelectedItem()+" "
 								 +eventMenu.getCmbEndTime().getSelectedItem());
 			}
-			occasionsList.add(event);
+			am.addOccasion(event);
 			//model.exportOccasion(event)
 			//refreshAgenda()
 		}
@@ -60,11 +59,19 @@ public class AgendaControl {
 								+taskMenu.getCmbYear().getSelectedItem()+" "
 								+taskMenu.getCmbTime().getSelectedItem());
 			}
-			occasionsList.add(task);
+			am.addOccasion(task);
 			//model.exportOccasion(task)
 			//refreshAgenda
 		}
 		
+	}
+
+	public void setTaskMenu(AddTaskMenu taskMenu) {
+		this.taskMenu = taskMenu;
+	}
+
+	public void setEventMenu(AddEventMenu eventMenu) {
+		this.eventMenu = eventMenu;
 	}
 
 	public AddTaskMenu getTaskMenu() {
@@ -75,7 +82,4 @@ public class AgendaControl {
 		return eventMenu;
 	}
 
-	public ArrayList<Occasion> getOccasionsList() {
-		return occasionsList;
-	}
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class AgendaModel {
 	private DataParserCSV dp;
 	private DataWriterCSV dw;
+	private ArrayList<Occasion> occasionsList = new ArrayList<Occasion>();
 	
 	public void importOccasions(){
     
@@ -22,5 +23,14 @@ public class AgendaModel {
 
             dw = new DataWriterCSV(occasions);
     }
-
+    
+    public void addOccasion(Occasion occasion) {
+    	occasionsList.add(occasion);
+    	//update view
+    }
+    
+    public void removeOccasion(Occasion occasion) {
+    	occasionsList.remove(occasion);
+    	//update view
+    }
 }
