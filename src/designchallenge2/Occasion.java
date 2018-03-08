@@ -1,6 +1,4 @@
 package designchallenge2;
-//model
-import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public abstract class Occasion {
+public abstract class Occasion{
 	protected Calendar startDate;
 	protected Calendar endDate;
 	protected String name;
@@ -92,6 +90,7 @@ public abstract class Occasion {
 	public String getStrColor() {
 		return this.strColor;
 	}
+	
 
 	
 }

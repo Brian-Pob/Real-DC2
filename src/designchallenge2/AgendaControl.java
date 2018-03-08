@@ -6,9 +6,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.TreeSet;
 
 //Control
-public class AgendaControl {
+public class AgendaControl{
 	private AddTaskMenu taskMenu;
 	private AddEventMenu eventMenu;
 	private AgendaModel am;
@@ -120,16 +124,46 @@ public class AgendaControl {
 		return eventMenu;
 	}
 	
-//	public ArrayList<Occasion> seqOrder(ArrayList<Occasion> occasions){
+	
+	public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
 //		ArrayList<Occasion> sortedOccasions = new ArrayList<Occasion>(occasions);
+//		Occasion min = null;
 //		if(occasions != null)	
-//			sortedOccasions.add(occasions.get(0));
+//			min = occasions.get(0);
 //		for(int i = 0; i < occasions.size(); i++) {
 //			for(int j = 0; j < occasions.size(); j++) {
-//				
+//				if(min.getStartDate().before(occasions.get(i+1))) {
+//					//min stay the same
+//				}
+//				else {
+//					min = occasions.get(i+1);
+//				}
+//				sortedOccasions.add(min);
+//				occasions.remove(min);
 //			}
 //		}
 //		return occasions;
-//	}
+		
+		Collections.sort(occasions, new Comparator<Occasion>() {
+			
+			public int compare(Occasion o1, Occasion o2) {
+				int result = 0;
+				if(o1.getStartDate().before(o2.getStartDate()))
+					result = -1;
+					else if(o1.getStartDate().equals(o2.getStartDate())) 
+						result = 0;
+						else if(o1.getStartDate().after(o2.getStartDate()) )
+							result = 1;
+					
+				return result;
+			}
+		});
+		
+		return occasions;
+	}
+
+	
+
+	
 
 }
