@@ -36,7 +36,9 @@ public class TestDriver {
 		A.add(t2);
 		A.add(e2);
 		
-		A = ac.filter("task", A);
+		boolean num = ac.isOverlapped(t, t2);
+		System.out.println(num);
+		//A = ac.filter("task", A, );
 		/*
 		Collections.sort(A, new Comparator<Occasion>() {
 		
