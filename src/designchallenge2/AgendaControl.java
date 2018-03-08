@@ -126,23 +126,6 @@ public class AgendaControl{
 	
 	
 	public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
-//		ArrayList<Occasion> sortedOccasions = new ArrayList<Occasion>(occasions);
-//		Occasion min = null;
-//		if(occasions != null)	
-//			min = occasions.get(0);
-//		for(int i = 0; i < occasions.size(); i++) {
-//			for(int j = 0; j < occasions.size(); j++) {
-//				if(min.getStartDate().before(occasions.get(i+1))) {
-//					//min stay the same
-//				}
-//				else {
-//					min = occasions.get(i+1);
-//				}
-//				sortedOccasions.add(min);
-//				occasions.remove(min);
-//			}
-//		}
-//		return occasions;
 		
 		Collections.sort(occasions, new Comparator<Occasion>() {
 			
@@ -162,7 +145,34 @@ public class AgendaControl{
 		return occasions;
 	}
 
-	
+	public ArrayList<Occasion> filter(String type, ArrayList<Occasion> occasions){
+		ArrayList<Occasion> filteredOccasions = new ArrayList<Occasion>();
+		
+		switch(type) {
+			case "all" : return occasions;
+			
+			case "event" :
+				for(Occasion o : occasions) {
+					if(o instanceof Event) {
+						filteredOccasions.add(o);
+					}
+				}
+				break;
+				
+			case "task" :
+				for(Occasion o : occasions) {
+					if(o instanceof Task) {
+						filteredOccasions.add(o);
+					}
+				}
+				break;
+				
+			default: 
+		}
+		
+		
+		return filteredOccasions;
+	}
 
 	
 
