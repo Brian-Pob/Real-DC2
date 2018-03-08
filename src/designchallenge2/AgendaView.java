@@ -3,7 +3,11 @@ package designchallenge2;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class AgendaView {
+import javax.swing.JFrame;
+
+public class AgendaView extends JFrame{
+	public AgendaView() {
+	}
 	private AgendaModel am;
 	private AgendaControl ac;
 	

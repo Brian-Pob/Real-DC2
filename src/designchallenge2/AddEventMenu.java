@@ -4,6 +4,7 @@ package designchallenge2;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
@@ -83,6 +84,7 @@ public class AddEventMenu extends JFrame{
 			cmbEndTime.addItem(timeString);
 			start.add(Calendar.MINUTE, 30);
 		}while(start.getTime().before(end.getTime()));
+		
 		int hourBound = gCal.get(GregorianCalendar.HOUR_OF_DAY);
 		int minuteBound = gCal.get(GregorianCalendar.MINUTE);
 		//System.out.println(minuteBound);
@@ -122,7 +124,8 @@ public class AddEventMenu extends JFrame{
 		
 		eventNameInput = new JTextField();
 		eventNameInput.setColumns(10);
-		setSize(500, 300);
+		setSize(new Dimension(500, 300));
+		
 		setResizable(false);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(

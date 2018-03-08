@@ -27,6 +27,7 @@ public class AddTaskMenu extends JFrame {
 		setVisible(true);
 		setTitle("AddTaskMenu");
 		setSize(new Dimension(500, 300));
+		setResizable(false);
 		
 		lblTaskName = new JLabel("Task Name:");
 		

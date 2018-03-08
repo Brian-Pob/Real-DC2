@@ -2,7 +2,10 @@ package designchallenge2;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 //Control
 public class AgendaControl {
@@ -30,7 +33,7 @@ public class AgendaControl {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if(!eventMenu.getEventNameInput().getText().equals("")) {
+			if(!eventMenu.getEventNameInput().getText().isEmpty()) {
 				//String eventDetails = eventMenu.getEventNameInput()+","
 				event = new Event(eventMenu.getEventNameInput().getText(),				//event name
 						
@@ -44,7 +47,31 @@ public class AgendaControl {
 								 +eventMenu.getCmbEndYear().getSelectedItem()+" "
 								 +eventMenu.getCmbEndTime().getSelectedItem());
 			}
-			am.addOccasion(event);
+			Calendar start = Calendar.getInstance();
+			Calendar end = Calendar.getInstance();
+			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+			String strStartDate =  eventMenu.getCmbStartMonth().getSelectedItem()+"/" 	//event start date and time
+					 +eventMenu.getCmbStartDay().getSelectedItem()+"/"
+					 +eventMenu.getCmbStartYear().getSelectedItem()+" "
+					 +eventMenu.getCmbStartTime().getSelectedItem();
+			String strEndDate = eventMenu.getCmbEndMonth().getSelectedItem()+"/"		//event end date and time
+					 +eventMenu.getCmbEndDay().getSelectedItem()+"/"
+					 +eventMenu.getCmbEndYear().getSelectedItem()+" "
+					 +eventMenu.getCmbEndTime().getSelectedItem();
+			try {
+				start.setTime(sdf.parse(strStartDate));
+				end.setTime(sdf.parse(strEndDate));
+				
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(start.before(end))
+				am.addOccasion(event);
+			else
+				System.out.println("End Date must come after Start Date");
+			
+			
 			//model.exportOccasion(event)
 			//refreshAgenda()
 		}
@@ -55,7 +82,7 @@ public class AgendaControl {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			if(!taskMenu.getTextTaskName().getText().equals("")) {
+			if(!taskMenu.getTextTaskName().getText().isEmpty()) {
 				task = new Task(taskMenu.getTextTaskName().getText(),				//task name
 						
 								 taskMenu.getCmbMonth().getSelectedItem()+"/" 	//task start date and time
@@ -92,5 +119,17 @@ public class AgendaControl {
 	public AddEventMenu getEventMenu() {
 		return eventMenu;
 	}
+	
+//	public ArrayList<Occasion> seqOrder(ArrayList<Occasion> occasions){
+//		ArrayList<Occasion> sortedOccasions = new ArrayList<Occasion>(occasions);
+//		if(occasions != null)	
+//			sortedOccasions.add(occasions.get(0));
+//		for(int i = 0; i < occasions.size(); i++) {
+//			for(int j = 0; j < occasions.size(); j++) {
+//				
+//			}
+//		}
+//		return occasions;
+//	}
 
 }

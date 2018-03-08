@@ -26,7 +26,10 @@ public class DataParserCSV implements TemplateDataParser{
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("File not found. Creating file...");
+			DataWriterCSV dw = new DataWriterCSV();
+			return dataList;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

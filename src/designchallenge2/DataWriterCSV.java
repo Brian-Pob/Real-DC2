@@ -18,6 +18,9 @@ public class DataWriterCSV implements TemplateDataWriter{
         this.writeFile(o);
     }
 	
+	public DataWriterCSV() {
+		this.writeFile();
+	}
 	@Override
 	public void writeFile(ArrayList<Occasion> occasions) { 
 	        String result = convertToString(occasions);
@@ -30,6 +33,15 @@ public class DataWriterCSV implements TemplateDataWriter{
 			}  
 	}
 	
+	public void writeFile() {
+		try { 
+			BufferedWriter bw = new BufferedWriter(new FileWriter("src/List of Occasions.csv"));
+			bw.write("");
+			bw.close();
+		} catch (IOException ex) {
+			Logger.getLogger(DataWriterCSV.class.getName()).log(Level.SEVERE, null, ex);
+		}  
+	}
 	public String convertToString(ArrayList<Occasion> occasions) {
 		 String startdate;
 	     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
