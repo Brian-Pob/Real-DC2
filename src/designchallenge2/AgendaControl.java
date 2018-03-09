@@ -173,6 +173,11 @@ public class AgendaControl{
 		
 		return filteredOccasions;
 	}
+	
+	public boolean isOverlapped(Occasion o1, Occasion o2) {
+		//do stuff
+		return false;
+	}
 
 	
 }
