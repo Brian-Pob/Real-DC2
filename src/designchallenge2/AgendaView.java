@@ -13,6 +13,7 @@ import java.util.Calendar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
+import java.awt.SystemColor;
 
 public class AgendaView extends JFrame {
 	public JTabbedPane tabbedPane;
@@ -80,7 +81,8 @@ public class AgendaView extends JFrame {
 		
 		agendaList = new DefaultListModel<>();
 		list = new JList<>(agendaList);
-		list.setPreferredSize(new Dimension(400, 220));
+		list.setBackground(SystemColor.control);
+		list.setPreferredSize(new Dimension(450, 220));
 		panel_1.add(list);
 	}
 	
@@ -103,15 +105,16 @@ public class AgendaView extends JFrame {
 									+sdf.format(e.getStartDate().getTime())+" | "+sdf.format(e.getEndDate().getTime()));
 			}
 		}
-		
+		agendaList.removeAllElements();
 		for(Occasion o: occasionsList) { //agendaList
+			
 			if(o instanceof Task) {
 				Task t = (Task)o;
-				agendaList.addElement("TASK | "+t.getName()+" | "+t.getStrColor()+" | "+sdf.format(t.getStartDate().getTime()));
+				agendaList.addElement("<html> <font color=\""+t.getStrColor()+"\""+">"+sdf.format(t.getStartDate().getTime())+" - "+t.getName()+"</font></html>");
 			}else if(o instanceof Event) {
 				Event e = (Event)o;
-				agendaList.addElement(sdf.format(e.getStartDate().getTime())+" - "+sdf.format(e.getEndDate().getTime())+
-									"EVENT | "+e.getName()+" | "+e.getStrColor()+" | "
+				agendaList.addElement("<html> <font color=\""+e.getStrColor()+"\""+">"+sdf.format(e.getStartDate().getTime())
+									+" - "+sdf.format(e.getEndDate().getTime())+" - "+e.getName()
 									);
 			}
 		}
@@ -123,7 +126,8 @@ public class AgendaView extends JFrame {
 				String timeStr = timeFormat.format(t.getEndDate().getTime());
 				for(int rowNum = 0; rowNum < table.getRowCount(); rowNum++) {
 					if(table.getValueAt(rowNum, 0).equals(timeStr)) {
-						table.setValueAt("TASK | "+t.getName()+" | "+t.getStrColor(), rowNum, 1);
+						table.setValueAt("<html> <font color=\""+t.getStrColor()+"\""+">"+t.getName()+"</font></html>", rowNum, 1);
+						
 					}
 				}
 			}else if(o instanceof Event) {
@@ -132,13 +136,13 @@ public class AgendaView extends JFrame {
 				String endTimeStr = timeFormat.format(e.getEndDate().getTime());
 				for(int rowNum = 0; rowNum < table.getRowCount();rowNum++) {
 					if(table.getValueAt(rowNum, 0).equals(startTimeStr)) {
-						table.setValueAt(e.getName()+" - START", rowNum, 1);
+						table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+e.getName()+" - START"+"</font></html>", rowNum, 1);
 						rowNum++;
 						while(!table.getValueAt(rowNum, 0).equals(endTimeStr)) {
-							table.setValueAt("-", rowNum, 1);
+							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+"~"+"</font><html>", rowNum, 1);
 							rowNum++;
 						}
-						table.setValueAt(e.getName()+" - END", rowNum, 1);
+						table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+e.getName()+" - END"+"</font></html>", rowNum, 1);
 					}
 					
 				}
