@@ -14,6 +14,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
 import java.awt.SystemColor;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JCalendar;
 
 public class AgendaView extends JFrame {
 	public JTabbedPane tabbedPane;
@@ -25,6 +27,7 @@ public class AgendaView extends JFrame {
 	public DefaultListModel<String> agendaList;
 	private AgendaModel am;
 	private AgendaControl ac;
+	public JCalendar calendar;
 	public AgendaView() {
 		
 		setSize(new Dimension(700, 500));
@@ -32,14 +35,14 @@ public class AgendaView extends JFrame {
 		getContentPane().setLayout(null);
 		
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(184, 0, 490, 262);
+		tabbedPane.setBounds(10, 0, 664, 262);
 		getContentPane().add(tabbedPane);
 		
 		panel = new JPanel();
 		tabbedPane.addTab("Day View", null, panel, null);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setPreferredSize(new Dimension(475, 220));
+		scrollPane.setPreferredSize(new Dimension(650, 220));
 		panel.add(scrollPane);
 		String[] columnTitles = {"Time", "Occasion"};
 		DefaultTableModel dtm  = new DefaultTableModel(columnTitles,0) {
@@ -71,7 +74,7 @@ public class AgendaView extends JFrame {
 		}while(start.getTime().before(end.getTime()));
 		
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		table.getColumnModel().getColumn(0).setPreferredWidth(350);
 		table.getColumnModel().getColumn(1).setPreferredWidth(350);
 		
 		scrollPane.setViewportView(table);
@@ -84,6 +87,10 @@ public class AgendaView extends JFrame {
 		list.setBackground(SystemColor.control);
 		list.setPreferredSize(new Dimension(450, 220));
 		panel_1.add(list);
+		
+		calendar = new JCalendar();
+		calendar.setBounds(10, 273, 198, 153);
+		getContentPane().add(calendar);
 	}
 	
 	public void addToAgendaList(String str) {
