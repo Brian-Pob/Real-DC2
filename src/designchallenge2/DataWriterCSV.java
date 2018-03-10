@@ -43,7 +43,7 @@ public class DataWriterCSV implements TemplateDataWriter{
 		}  
 	}
 	public String convertToString(ArrayList<Occasion> occasions) {
-		 String startdate;
+		 String startdate = "";
 	     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 	     String result = "";
 	     
@@ -51,14 +51,14 @@ public class DataWriterCSV implements TemplateDataWriter{
 	        String name = o.getName();
 	        if(o instanceof Task){
 	        	startdate = sdf.format(o.getStartDate().getTime());
-				String info = "Task" +","+name+","+ startdate + o.isDone.toString() + "\n";
+				String info = "Task" +","+name+","+ startdate+ "," + o.isDone.toString() + "\n";
 				result += info;
 	        }
 				
 			else if(o instanceof Event) {
 		        startdate = sdf.format(o.getStartDate().getTime());
 		        String enddate = sdf.format(o.getEndDate().getTime());
-				String info = "Event" +","+name+","+ startdate +","+ enddate+ o.isDone.toString() + "\n";
+				String info = "Event" +","+name+","+ startdate +","+ enddate+ "," + o.isDone.toString() + "\n";
 				result += info;
 			}
 		
