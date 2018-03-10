@@ -139,7 +139,7 @@ public class AgendaControl{
 		return eventMenu;
 	}
 	/*
-public void startInstructions() {
+	public void startInstructions() {
 		
 		//constantly checking
 		Thread instructions = new Thread() {
@@ -154,10 +154,10 @@ public void startInstructions() {
             			if(o instance of Event){
             				if(o.isDone() == true){
             					//update
-            					}
+        					}
             			}
             		}
-        			
+
         		}
         	}
         };

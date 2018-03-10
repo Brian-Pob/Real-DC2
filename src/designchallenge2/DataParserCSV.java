@@ -49,7 +49,7 @@ public class DataParserCSV implements TemplateDataParser{
 		String delimiter = "";
 		String extension = "";
 		ArrayList<Occasion> parsedData = new ArrayList<Occasion>();
-		Occasion event = null;
+		Occasion occasion = null;
 		ArrayList<String> dataList = new ArrayList<String>(readData());
 		
 		int i = filename.lastIndexOf('.');
@@ -62,13 +62,13 @@ public class DataParserCSV implements TemplateDataParser{
 		for(String s: dataList) {
 			eventDetails = s.split(delimiter);
 			if(eventDetails[0].equals("Task")) {
-				event = new Task(eventDetails[1], eventDetails[2], eventDetails[3]);
-				parsedData.add(event);
+				occasion = new Task(eventDetails[1], eventDetails[2], eventDetails[3]);
+				parsedData.add(occasion);
 			}
 			
 			else if(eventDetails[0].equals("Event")) {
-				event = new Event(eventDetails[1], eventDetails[2], eventDetails[3], eventDetails[4]);
-				parsedData.add(event);
+				occasion = new Event(eventDetails[1], eventDetails[2], eventDetails[3], eventDetails[4]);
+				parsedData.add(occasion);
 			}
 
 //			System.out.println("Data added to "+extension);
