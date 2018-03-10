@@ -144,8 +144,25 @@ public class AgendaControl{
 		
 		return occasions;
 	}
+	
+	public ArrayList<Occasion> filterDate(String date, ArrayList<Occasion> occasions){
+		ArrayList<Occasion> filteredOccasions = new ArrayList<Occasion>();
+		String dateDetails[];
+		String delimiter = " ";
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		String formatted;
+		
+		for(Occasion o : occasions) {
+			formatted = formatter.format(o.getStartDate().getTime());
+			dateDetails = formatted.split(delimiter);
+			if(dateDetails[0].equals(date)) {
+				filteredOccasions.add(o);
+			}
+		}
+		return filteredOccasions;
+	}
 
-	public ArrayList<Occasion> filter(String type, ArrayList<Occasion> occasions){
+	public ArrayList<Occasion> filterType(String type, ArrayList<Occasion> occasions){
 		ArrayList<Occasion> filteredOccasions = new ArrayList<Occasion>();
 		
 		switch(type) {
