@@ -12,6 +12,7 @@ public abstract class Occasion{
 	protected String name;
 //	protected Color color;
 	protected String strColor; 
+	protected Boolean isDone;
 	//protected Calendar startTime;
 	
 	/*
@@ -42,6 +43,18 @@ public abstract class Occasion{
 		this.name = name;
 	}
 	
+	public Boolean getIsDone() {
+		return isDone;
+	}
+
+	public void setIsDone(Boolean isDone) {
+		this.isDone = isDone;
+	}
+
+	public void setEndDate(Calendar endDate) {
+		this.endDate = endDate;
+	}
+
 	public abstract void setStrColor();
 	
 	
@@ -82,15 +95,18 @@ public abstract class Occasion{
 		return this.startDate;
 	}
 	
-	/*
-	public Calendar getStartTime() {
-		return startTime;
-	}
-	*/
+
 	public String getStrColor() {
 		return this.strColor;
 	}
 	
-
+	public boolean isBetween(Calendar date, Occasion otherOccasion) {
+		return ((date.compareTo(otherOccasion.getStartDate()) >= 0) && (date.compareTo(otherOccasion.getEndDate())<=0));
+	}
+	
+	public boolean isOverlap(Occasion otherOccasion) {
+		return (this.isBetween(this.getStartDate(), otherOccasion) || this.isBetween(this.getEndDate(), otherOccasion));
+	}
+	
 	
 }
