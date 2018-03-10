@@ -22,7 +22,7 @@ public class Event extends Occasion {
 	
 	public Event(String name, String startdate, String enddate, String done) {
 		super();
-		setIsDone(Boolean.parseBoolean(done));
+		IsDone();
 	}
 	
 	@Override

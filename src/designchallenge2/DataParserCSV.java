@@ -50,8 +50,8 @@ public class DataParserCSV implements TemplateDataParser{
 		String extension = "";
 		ArrayList<Occasion> parsedData = new ArrayList<Occasion>();
 		Occasion occasion = null;
-		ArrayList<String> dataList = new ArrayList<String>(readData());
-		
+		//ArrayList<String> dataList = new ArrayList<String>(readData());
+		ArrayList<String> dataList = this.readData();
 		int i = filename.lastIndexOf('.');
 		if (i > 0) {
 		    extension = filename.substring(i+1);

@@ -16,15 +16,16 @@ public class AgendaModel {
 	}
 	
 	public ArrayList<Occasion> importOccasions(){
+		ArrayList<Occasion> occasions = null;
         try {
 			dp = new DataParserCSV("List of Occasions.csv");
 			//AgendaView.addAllEvents(dp.processData());
 			//av.updateView(dp.processData());
-			return dp.processData();
+			occasions= dp.processData();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        return null;
+        return occasions;
         
     }
     
