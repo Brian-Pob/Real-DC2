@@ -1,40 +1,54 @@
 package designchallenge2;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.swing.JFrame;
 import javax.swing.JTable;
-import java.awt.BorderLayout;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JList;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JScrollPane;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JRadioButton;
-import javax.swing.JTabbedPane;
-import javax.swing.JPanel;
-
-public class AgendaView extends JFrame{
+public class AgendaView extends JFrame {
+	public JTabbedPane tabbedPane;
+	public JPanel panel;
+	public JPanel panel_1;
+	public JScrollPane scrollPane;
+	public JTable table;
+	public JList list;
+	public DefaultListModel<String> agendaList;
 	private AgendaModel am;
 	private AgendaControl ac;
-	private JTable table;
-	private JScrollPane scrollPane = new JScrollPane();
 	public AgendaView() {
-		setSize(new Dimension(500, 600));
+		
+		setSize(new Dimension(700, 500));
 		setVisible(true);
-		setTitle("Agenda/Day View");
-		setName("");
-		setResizable(false);
+		getContentPane().setLayout(null);
 		
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(184, 0, 490, 262);
+		getContentPane().add(tabbedPane);
 		
-//		System.out.println("DEBUG");
+		panel = new JPanel();
+		tabbedPane.addTab("Day View", null, panel, null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setPreferredSize(new Dimension(475, 220));
+		panel.add(scrollPane);
 		String[] columnTitles = {"Time", "Occasion"};
-		table = new JTable(new DefaultTableModel(columnTitles, 0));
+		DefaultTableModel dtm  = new DefaultTableModel(columnTitles,0) {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		
+		table = new JTable(dtm);
 		
 		Calendar start = Calendar.getInstance();
 		start.set(Calendar.HOUR_OF_DAY, 0);
@@ -46,56 +60,95 @@ public class AgendaView extends JFrame{
 		
 		do {
 			timeString = Integer.toString(start.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(start.get(Calendar.MINUTE));
-//			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
-//				timeString = "0"+timeString;
+			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
+				timeString = "0"+timeString;
 			if(start.get(Calendar.MINUTE) <= 9)
 				timeString = timeString+"0";
-			DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-			dtm.addRow(new String[] {timeString,""});
+			DefaultTableModel dtm1 = (DefaultTableModel) table.getModel();
+			dtm1.addRow(new String[] {timeString,""});
 			start.add(Calendar.MINUTE, 30);
 		}while(start.getTime().before(end.getTime()));
 		
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		table.getColumnModel().getColumn(1).setPreferredWidth((int) (75*5));
-		table.setValueAt("Thing3", 1, 1);
-//		System.out.println("DEBUG");
-//		System.out.println("DEBUG"+table.getColumnModel().getColumn(1).getPreferredWidth());
+		table.getColumnModel().getColumn(1).setPreferredWidth(350);
+		
 		scrollPane.setViewportView(table);
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 439, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(132, Short.MAX_VALUE))
-		);
-		getContentPane().setLayout(groupLayout);
+		
+		panel_1 = new JPanel();
+		tabbedPane.addTab("AgendaView", null, panel_1, null);
+		
+		agendaList = new DefaultListModel<>();
+		list = new JList<>(agendaList);
+		list.setPreferredSize(new Dimension(400, 220));
+		panel_1.add(list);
 	}
-
 	
-	
+	public void addToAgendaList(String str) {
+		agendaList.addElement(str);
+	}
 	public void updateView(ArrayList<Occasion> occasionsList) {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 		
 		for(int i = 0; i < 100; i++){
 			System.out.println(); //acts like a clear screen. only temporary
 		}
-		for(Occasion o: occasionsList) {
+		for(Occasion o: occasionsList) {//print out
 			if(o instanceof Task) {
 				Task t = (Task)o;
-				System.out.println("TASK | "+t.getName()+" | "+t.getStrColor()+" | "+sdf.format(t.getEndDate().getTime()));
+				System.out.println("TASK | "+t.getName()+" | "+t.getStrColor()+" | "+sdf.format(t.getStartDate().getTime()));
 			}else if(o instanceof Event) {
 				Event e = (Event)o;
 				System.out.println("EVENT | "+e.getName()+" | "+e.getStrColor()+" | "
 									+sdf.format(e.getStartDate().getTime())+" | "+sdf.format(e.getEndDate().getTime()));
 			}
 		}
+		
+		for(Occasion o: occasionsList) { //agendaList
+			if(o instanceof Task) {
+				Task t = (Task)o;
+				agendaList.addElement("TASK | "+t.getName()+" | "+t.getStrColor()+" | "+sdf.format(t.getStartDate().getTime()));
+			}else if(o instanceof Event) {
+				Event e = (Event)o;
+				agendaList.addElement(sdf.format(e.getStartDate().getTime())+" - "+sdf.format(e.getEndDate().getTime())+
+									"EVENT | "+e.getName()+" | "+e.getStrColor()+" | "
+									);
+			}
+		}
+		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+		
+		for(Occasion o: occasionsList) { //day view
+			if(o instanceof Task) {
+				Task t = (Task)o;
+				String timeStr = timeFormat.format(t.getEndDate().getTime());
+				for(int rowNum = 0; rowNum < table.getRowCount(); rowNum++) {
+					if(table.getValueAt(rowNum, 0).equals(timeStr)) {
+						table.setValueAt("TASK | "+t.getName()+" | "+t.getStrColor(), rowNum, 1);
+					}
+				}
+			}else if(o instanceof Event) {
+				Event e = (Event)o;
+				String startTimeStr = timeFormat.format(e.getStartDate().getTime());
+				String endTimeStr = timeFormat.format(e.getEndDate().getTime());
+				for(int rowNum = 0; rowNum < table.getRowCount();rowNum++) {
+					if(table.getValueAt(rowNum, 0).equals(startTimeStr)) {
+						table.setValueAt(e.getName()+" - START", rowNum, 1);
+						rowNum++;
+						while(!table.getValueAt(rowNum, 0).equals(endTimeStr)) {
+							table.setValueAt("-", rowNum, 1);
+							rowNum++;
+						}
+						table.setValueAt(e.getName()+" - END", rowNum, 1);
+					}
+					
+				}
+			}
+		}
 	}
-	
+//	public static void main(String[] args) {
+//		NewAgendaView tv2 = new NewAgendaView();
+//		tv2.addToAgendaList("Hello World");
+//	}
 	public void attachModel(AgendaModel am) {
 		this.am = am;
 	}

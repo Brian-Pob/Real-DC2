@@ -73,9 +73,10 @@ public class AgendaControl{
 				}
 				if(start.before(end))
 					am.addOccasion(event);
-				else
+				else {
 					System.out.println("End Date must come after Start Date");
 					JOptionPane.showMessageDialog(null, "End Date must come after Start Date");
+				}
 			}
 			else {
 				System.out.println("Input field cannot be empty");
@@ -100,7 +101,10 @@ public class AgendaControl{
 								+taskMenu.getCmbDay().getSelectedItem()+"/"
 								+taskMenu.getCmbYear().getSelectedItem()+" "
 								+taskMenu.getCmbTime().getSelectedItem());
+				System.out.println(taskMenu.getCmbTime().getSelectedItem()+"DEBUG!!!");
+//				System.out.println(task.get);
 				am.addOccasion(task);
+				
 			}
 			else {
 				System.out.println("Input field cannot be empty");
