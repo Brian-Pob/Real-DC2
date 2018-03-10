@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +18,11 @@ import javax.swing.JList;
 import java.awt.SystemColor;
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JCalendar;
+import javax.swing.JTextPane;
+import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 public class AgendaView extends JFrame {
 	public JTabbedPane tabbedPane;
@@ -28,8 +35,14 @@ public class AgendaView extends JFrame {
 	private AgendaModel am;
 	private AgendaControl ac;
 	public JCalendar calendar;
+	public JTextPane txtpnDateselected;
+	public JLabel lblTesting;
+	public JPanel panel_2;
+	private Date dateToday;
+	public JButton btnChangeDate;
 	public AgendaView() {
-		
+		GregorianCalendar gCal = new GregorianCalendar();
+//		dateToday = gCal.get(GregorianCalendar.)
 		setSize(new Dimension(700, 500));
 		setVisible(true);
 		getContentPane().setLayout(null);
@@ -89,8 +102,40 @@ public class AgendaView extends JFrame {
 		panel_1.add(list);
 		
 		calendar = new JCalendar();
+		
+		
 		calendar.setBounds(10, 273, 198, 153);
 		getContentPane().add(calendar);
+		
+		panel_2 = new JPanel();
+		panel_2.setBounds(394, 297, 188, 111);
+		getContentPane().add(panel_2);
+		
+		lblTesting = new JLabel("Testing:");
+		panel_2.add(lblTesting);
+		
+		txtpnDateselected = new JTextPane();
+		panel_2.add(txtpnDateselected);
+		txtpnDateselected.setEditable(false);
+		txtpnDateselected.setText("dateSelected");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		calendar.getDayChooser().getDayPanel().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtpnDateselected.setText(sdf.format(calendar.getDate()));
+			}
+		});
+		txtpnDateselected.setText(sdf.format(calendar.getDate()));
+		
+		btnChangeDate = new JButton("Change Date");
+		btnChangeDate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtpnDateselected.setText(sdf.format(calendar.getDate()));
+			}
+		});
+		btnChangeDate.setBounds(10, 427, 198, 23);
+		getContentPane().add(btnChangeDate);
 	}
 	
 	public void addToAgendaList(String str) {
