@@ -43,9 +43,7 @@ public abstract class Occasion{
 		this.name = name;
 	}
 	
-	public Boolean getIsDone() {
-		return isDone;
-	}
+	public abstract boolean IsDone();
 
 	public void setIsDone(Boolean isDone) {
 		this.isDone = isDone;
