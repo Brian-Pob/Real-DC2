@@ -15,6 +15,12 @@ public class Task extends Occasion{
 		setEndDate(startdate);
 		//setStartTime(starttime);
 		setStrColor();
+		setIsDone(false);
+	}
+	
+	public Task(String name, String startdate, String done) {
+		super();
+		setIsDone(Boolean.parseBoolean(done));
 	}
 
 	@Override
@@ -33,6 +39,12 @@ public class Task extends Occasion{
 	
 	public Calendar getEndDate() {
 		return endDate;
+	}
+
+	@Override
+	public boolean IsDone() {
+		// TODO Auto-generated method stub
+		return isDone;
 	}
 	
 	

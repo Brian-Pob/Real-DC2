@@ -2,6 +2,7 @@ package designchallenge2;
 //model
 //import java.awt.Color;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Event extends Occasion {
 	
@@ -16,12 +17,17 @@ public class Event extends Occasion {
 		setEndDate(enddate);
 		//setEndTime(endtime);
 		setStrColor();
+		IsDone();
+	}
+	
+	public Event(String name, String startdate, String enddate, String done) {
+		super();
+		setIsDone(Boolean.parseBoolean(done));
 	}
 	
 	@Override
 	public void setStrColor() {
 		this.strColor = "blue";
-		
 	}
 	
 	
@@ -31,6 +37,15 @@ public class Event extends Occasion {
 	
 	public void setEndDate(String input) {
 		this.endDate = convertDate(input);
+	}
+	
+	public boolean IsDone() {
+		Calendar curr = (GregorianCalendar) Calendar.getInstance();
+		if(this.endDate.after(curr)) {
+			setIsDone(true);
+			return true;
+		}
+		return false;
 	}
 	
 	/*

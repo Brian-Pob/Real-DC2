@@ -138,78 +138,33 @@ public class AgendaControl{
 	public AddEventMenu getEventMenu() {
 		return eventMenu;
 	}
-	
-	
-	public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
+	/*
+public void startInstructions() {
 		
-		Collections.sort(occasions, new Comparator<Occasion>() {
-			
-			public int compare(Occasion o1, Occasion o2) {
-				int result = 0;
-				if(o1.getStartDate().before(o2.getStartDate()))
-					result = -1;
-					else if(o1.getStartDate().equals(o2.getStartDate())) 
-						result = 0;
-						else if(o1.getStartDate().after(o2.getStartDate()) )
-							result = 1;
-					
-				return result;
-			}
-		});
-		
-		return occasions;
-	}
-	
-	public ArrayList<Occasion> filterDate(String date, ArrayList<Occasion> occasions){
-		ArrayList<Occasion> filteredOccasions = new ArrayList<Occasion>();
-		String dateDetails[];
-		String delimiter = " ";
-		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-		String formatted;
-		
-		for(Occasion o : occasions) {
-			formatted = formatter.format(o.getStartDate().getTime());
-			dateDetails = formatted.split(delimiter);
-			if(dateDetails[0].equals(date)) {
-				filteredOccasions.add(o);
-			}
-		}
-		return filteredOccasions;
-	}
+		//constantly checking
+		Thread instructions = new Thread() {
+        	public void run() {
+        		while(true) {
+        			
+            		try {
+                		Thread.sleep(1000);           			
+            		}catch(InterruptedException e) {} 
+            		
+            		for(Occasion o : occasions){
+            			if(o instance of Event){
+            				if(o.isDone() == true){
+            					//update
+            					}
+            			}
+            		}
+        			
+        		}
+        	}
+        };
+        
+        instructions.start();
 
-	public ArrayList<Occasion> filterType(String type, ArrayList<Occasion> occasions){
-		ArrayList<Occasion> filteredOccasions = new ArrayList<Occasion>();
-		
-		switch(type) {
-			case "all" : return occasions;
-			
-			case "event" :
-				for(Occasion o : occasions) {
-					if(o instanceof Event) {
-						filteredOccasions.add(o);
-					}
-				}
-				break;
-				
-			case "task" :
-				for(Occasion o : occasions) {
-					if(o instanceof Task) {
-						filteredOccasions.add(o);
-					}
-				}
-				break;
-				
-			default: 
-		}
-		
-		
-		return filteredOccasions;
 	}
-	
-	public boolean isOverlapped(Occasion o1, Occasion o2) {
-		//do stuff
-		return false;
-	}
-
+	*/
 	
 }

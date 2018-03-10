@@ -35,10 +35,10 @@ public class TestDriver {
 		A.add(e);
 		A.add(t2);
 		A.add(e2);
-		
+		AgendaModel am = new AgendaModel(new AgendaView());
 		//boolean num = ac.isOverlapped(t, t2);
 		//System.out.println(num);
-		A = ac.filterDate("03/18/2018", A);
+		A = am.filterDate("03/18/2018", A);
 		/*
 		Collections.sort(A, new Comparator<Occasion>() {
 		
