@@ -51,14 +51,14 @@ public class DataWriterCSV implements TemplateDataWriter{
 	        String name = o.getName();
 	        if(o instanceof Task){
 	        	startdate = sdf.format(o.getStartDate().getTime());
-				String info = "Task" +","+name+","+ startdate + "\n";
+				String info = "Task" +","+name+","+ startdate + "," +o.IsDone()+ "\n";
 				result += info;
 	        }
 				
 			else if(o instanceof Event) {
 		        startdate = sdf.format(o.getStartDate().getTime());
 		        String enddate = sdf.format(o.getEndDate().getTime());
-				String info = "Event" +","+name+","+ startdate +","+ enddate+"\n";
+				String info = "Event" +","+name+","+ startdate +","+ enddate+ "," +o.IsDone() +"\n";
 				result += info;
 			}
 		

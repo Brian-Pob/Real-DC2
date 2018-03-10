@@ -92,7 +92,7 @@ public class AgendaView extends JFrame {
 	public void updateView(ArrayList<Occasion> occasionsList) {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 		
-		for(int i = 0; i < 100; i++){
+		for(int i = 0; i < /*100*/10; i++){
 			System.out.println(); //acts like a clear screen. only temporary
 		}
 		for(Occasion o: occasionsList) {//print out
