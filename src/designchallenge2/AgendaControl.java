@@ -11,6 +11,8 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.swing.JOptionPane;
+
 //Control
 public class AgendaControl{
 	private AddTaskMenu taskMenu;
@@ -50,30 +52,35 @@ public class AgendaControl{
 								 +eventMenu.getCmbEndDay().getSelectedItem()+"/"
 								 +eventMenu.getCmbEndYear().getSelectedItem()+" "
 								 +eventMenu.getCmbEndTime().getSelectedItem());
+				Calendar start = Calendar.getInstance();
+				Calendar end = Calendar.getInstance();
+				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+				String strStartDate =  eventMenu.getCmbStartMonth().getSelectedItem()+"/" 	//event start date and time
+						 +eventMenu.getCmbStartDay().getSelectedItem()+"/"
+						 +eventMenu.getCmbStartYear().getSelectedItem()+" "
+						 +eventMenu.getCmbStartTime().getSelectedItem();
+				String strEndDate = eventMenu.getCmbEndMonth().getSelectedItem()+"/"		//event end date and time
+						 +eventMenu.getCmbEndDay().getSelectedItem()+"/"
+						 +eventMenu.getCmbEndYear().getSelectedItem()+" "
+						 +eventMenu.getCmbEndTime().getSelectedItem();
+				try {
+					start.setTime(sdf.parse(strStartDate));
+					end.setTime(sdf.parse(strEndDate));
+					
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				if(start.before(end))
+					am.addOccasion(event);
+				else
+					System.out.println("End Date must come after Start Date");
+					JOptionPane.showMessageDialog(null, "End Date must come after Start Date");
 			}
-			Calendar start = Calendar.getInstance();
-			Calendar end = Calendar.getInstance();
-			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-			String strStartDate =  eventMenu.getCmbStartMonth().getSelectedItem()+"/" 	//event start date and time
-					 +eventMenu.getCmbStartDay().getSelectedItem()+"/"
-					 +eventMenu.getCmbStartYear().getSelectedItem()+" "
-					 +eventMenu.getCmbStartTime().getSelectedItem();
-			String strEndDate = eventMenu.getCmbEndMonth().getSelectedItem()+"/"		//event end date and time
-					 +eventMenu.getCmbEndDay().getSelectedItem()+"/"
-					 +eventMenu.getCmbEndYear().getSelectedItem()+" "
-					 +eventMenu.getCmbEndTime().getSelectedItem();
-			try {
-				start.setTime(sdf.parse(strStartDate));
-				end.setTime(sdf.parse(strEndDate));
-				
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			else {
+				System.out.println("Input field cannot be empty");
+				JOptionPane.showMessageDialog(null, "Input field cannot be empty");
 			}
-			if(start.before(end))
-				am.addOccasion(event);
-			else
-				System.out.println("End Date must come after Start Date");
 			
 			
 			//model.exportOccasion(event)
@@ -93,8 +100,12 @@ public class AgendaControl{
 								+taskMenu.getCmbDay().getSelectedItem()+"/"
 								+taskMenu.getCmbYear().getSelectedItem()+" "
 								+taskMenu.getCmbTime().getSelectedItem());
+				am.addOccasion(task);
 			}
-			am.addOccasion(task);
+			else {
+				System.out.println("Input field cannot be empty");
+				JOptionPane.showMessageDialog(null, "Input field cannot be empty");
+			}
 			//model.exportOccasion(task)
 			//refreshAgenda
 		}
