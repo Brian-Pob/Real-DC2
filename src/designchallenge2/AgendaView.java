@@ -15,23 +15,25 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JRadioButton;
+import javax.swing.JTabbedPane;
+import javax.swing.JPanel;
 
 public class AgendaView extends JFrame{
 	private AgendaModel am;
 	private AgendaControl ac;
 	private JTable table;
-	
+	private JScrollPane scrollPane = new JScrollPane();
 	public AgendaView() {
-		setSize(new Dimension(450, 518));
+		setSize(new Dimension(500, 600));
 		setVisible(true);
 		setTitle("Agenda/Day View");
 		setName("");
 		setResizable(false);
-		JScrollPane scrollPane = new JScrollPane();
+		
 		
 //		System.out.println("DEBUG");
 		String[] columnTitles = {"Time", "Occasion"};
-		String[][] rowData = {{"0:00",""},{"0:30",""}};
 		table = new JTable(new DefaultTableModel(columnTitles, 0));
 		
 		Calendar start = Calendar.getInstance();
@@ -55,7 +57,7 @@ public class AgendaView extends JFrame{
 		
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		table.getColumnModel().getColumn(1).setPreferredWidth((int) (75*4.5));
+		table.getColumnModel().getColumn(1).setPreferredWidth((int) (75*5));
 		table.setValueAt("Thing3", 1, 1);
 //		System.out.println("DEBUG");
 //		System.out.println("DEBUG"+table.getColumnModel().getColumn(1).getPreferredWidth());
@@ -63,11 +65,13 @@ public class AgendaView extends JFrame{
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 439, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(132, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 	}
