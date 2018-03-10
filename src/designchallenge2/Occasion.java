@@ -12,7 +12,7 @@ public abstract class Occasion{
 	protected String name;
 //	protected Color color;
 	protected String strColor; 
-	protected Boolean isDone;
+	protected boolean isDone;
 	//protected Calendar startTime;
 	
 	/*
@@ -43,11 +43,10 @@ public abstract class Occasion{
 		this.name = name;
 	}
 	
-	public Boolean getIsDone() {
-		return isDone;
-	}
+	public abstract boolean IsDone();
+	
 
-	public void setIsDone(Boolean isDone) {
+	public void setIsDone(boolean isDone) {
 		this.isDone = isDone;
 	}
 

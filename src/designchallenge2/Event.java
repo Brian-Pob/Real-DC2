@@ -12,10 +12,14 @@ public class Event extends Occasion {
 	public Event(String name, String startdate, String enddate) {
 		setName(name);
 		setStartDate(startdate);
-		//setStartTime(starttime);
 		setEndDate(enddate);
-		//setEndTime(endtime);
 		setStrColor();
+		IsDone();
+	}
+	
+	public Event(String name, String startdate, String enddate, boolean done) {
+		super();
+		setIsDone(done);
 	}
 	
 	@Override
@@ -31,6 +35,18 @@ public class Event extends Occasion {
 	
 	public void setEndDate(String input) {
 		this.endDate = convertDate(input);
+	}
+
+	@Override
+	public boolean IsDone() {
+		Calendar curr = Calendar.getInstance();
+		 
+	    if(this.endDate.after(curr)) {
+	      setIsDone(true);
+	      return true;
+	    }
+	    return false;
+	 
 	}
 	
 	/*

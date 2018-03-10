@@ -15,6 +15,7 @@ public class Task extends Occasion{
 		setEndDate(startdate);
 		//setStartTime(starttime);
 		setStrColor();
+		setIsDone(false);
 	}
 
 	@Override
@@ -33,6 +34,12 @@ public class Task extends Occasion{
 	
 	public Calendar getEndDate() {
 		return endDate;
+	}
+
+	@Override
+	public boolean IsDone() {
+		// TODO Auto-generated method stub
+		return isDone;
 	}
 	
 	

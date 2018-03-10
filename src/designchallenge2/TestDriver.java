@@ -38,7 +38,7 @@ public class TestDriver {
 		
 		//boolean num = ac.isOverlapped(t, t2);
 		//System.out.println(num);
-		A = ac.filterDate("03/18/2018", A);
+		//A = ac.filterDate("03/18/2018", A);
 		/*
 		Collections.sort(A, new Comparator<Occasion>() {
 		
