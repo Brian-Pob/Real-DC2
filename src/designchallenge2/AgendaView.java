@@ -123,7 +123,7 @@ public class AgendaView extends JFrame {
 		for(Occasion o: occasionsList) { //day view
 			if(o instanceof Task) {
 				Task t = (Task)o;
-				String timeStr = timeFormat.format(t.getEndDate().getTime());
+				String timeStr = timeFormat.format(t.getStartDate().getTime());
 				for(int rowNum = 0; rowNum < table.getRowCount(); rowNum++) {
 					if(table.getValueAt(rowNum, 0).equals(timeStr)) {
 						table.setValueAt("<html> <font color=\""+t.getStrColor()+"\""+">"+t.getName()+"</font></html>", rowNum, 1);
