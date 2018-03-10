@@ -62,13 +62,13 @@ public class DataParserCSV implements TemplateDataParser{
 		for(String s: dataList) {
 			eventDetails = s.split(delimiter);
 			if(eventDetails[0].equals("Task")) {
-				event = new Task(eventDetails[1], eventDetails[2]/*,eventDetails[3]*/);
+				event = new Task(eventDetails[1], eventDetails[2],eventDetails[3]);
 				System.out.println(eventDetails[3]);
 				parsedData.add(event);
 			}
 			
 			else if(eventDetails[0].equals("Event")) {
-				event = new Event(eventDetails[1], eventDetails[2], eventDetails[3]/*, eventDetails[4].trim()*/);
+				event = new Event(eventDetails[1], eventDetails[2], eventDetails[3]/*, eventDetails[4]*/);
 				System.out.println(eventDetails[4]);
 				parsedData.add(event);
 			}

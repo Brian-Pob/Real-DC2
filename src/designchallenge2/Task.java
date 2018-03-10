@@ -24,7 +24,9 @@ public class Task extends Occasion{
 		setStartDate(startdate);
 		setEndDate(startdate);
 		setStrColor();
+		System.out.println("Test:"+done);
 		setIsDone(Boolean.parseBoolean(done));
+		System.out.println("Test:"+done);
 	}
 
 	@Override

@@ -14,12 +14,14 @@ public class Event extends Occasion {
 		setStartDate(startdate);
 		setEndDate(enddate);
 		setStrColor();
-		IsDone();
+		setIsDone(false);
 	}
 	
 	public Event(String name, String startdate, String enddate, String done) {
 		super();
+		System.out.println("Test in Event: " + done);
 		setIsDone(Boolean.parseBoolean(done));
+		System.out.println("Test in Event: " + done);
 	}
 	
 	@Override
@@ -46,6 +48,7 @@ public class Event extends Occasion {
 	      return true;
 	    }
 	    return false;
+	    
 	 
 	}
 	

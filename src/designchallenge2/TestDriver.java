@@ -17,8 +17,8 @@ public class TestDriver {
         AgendaControl ac = new AgendaControl();
 		Event e = new Event("Ball", "12/07/1997 08:00", "12/07/1997 12:30");
 		Event e2 = new Event("Party", "12/07/1987 08:00", "12/07/1997 12:30");
-		Task t = new Task("Laundry", "3/18/2018 7:30");
-		Task t2 = new Task("poker", "3/18/2018 12:30");
+		Task t = new Task("Laundry", "3/18/2018 7:30","false");
+		Task t2 = new Task("poker", "3/18/2018 12:30","true");
 		
 		SimpleDateFormat formatter=new SimpleDateFormat("MM/dd/yyyy HH:mm"); 
         //String startTime = formatter.format(e.getStartTime().getTime());
@@ -30,14 +30,13 @@ public class TestDriver {
 			+" End Date: " + formatter.format(e.getEndDate().getTime()) );
 		System.out.println(t.getName() + " Start Date: " + formatter.format(t.getStartDate().getTime()) +" End Date: " + formatter.format(t.getEndDate().getTime()));
 		*/
-		ArrayList<Occasion> A = new ArrayList<Occasion>();
-		A.add(t);
-		A.add(e);
-		A.add(t2);
-		A.add(e2);
+//		ArrayList<Occasion> A = new ArrayList<Occasion>();
+//		A.add(t);
+//		A.add(e);
+//		A.add(t2);
+//		A.add(e2);
 		
-		//boolean num = ac.isOverlapped(t, t2);
-		//System.out.println(num);
+		System.out.println(e.IsDone());
 		//A = ac.filterDate("03/18/2018", A);
 		/*
 		Collections.sort(A, new Comparator<Occasion>() {
@@ -65,11 +64,12 @@ public class TestDriver {
 		ArrayList<Occasion> B = new ArrayList<Occasion>();
 		B = r.processData();
 		*/
-		for(Occasion o : A) {
-			System.out.println(o.getName() + " Start Date: " + formatter.format(o.getStartDate().getTime())
-			+" End Date: " + formatter.format(o.getEndDate().getTime()) );
-		}
 		
+//		for(Occasion o : A) {
+//			System.out.println(o.getName() + " Start Date: " + formatter.format(o.getStartDate().getTime())
+//			+" End Date: " + formatter.format(o.getEndDate().getTime()) /*+ " " + o.IsDone()*/);
+//		}
+
 		
 		
 		//testing
