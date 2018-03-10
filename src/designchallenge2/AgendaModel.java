@@ -15,14 +15,16 @@ public class AgendaModel {
 		this.importOccasions();
 	}
 	
-	public void importOccasions(){
+	public ArrayList<Occasion> importOccasions(){
         try {
 			dp = new DataParserCSV("List of Occasions.csv");
 			//AgendaView.addAllEvents(dp.processData());
-			av.updateView(dp.processData());
+			//av.updateView(dp.processData());
+			return dp.processData();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+        return null;
         
     }
     
@@ -105,5 +107,13 @@ public class AgendaModel {
 			default: 
 		}
 		return filteredOccasions;
+	}
+	
+	public void updateViews(String date, String type){
+		ArrayList<Occasion> occasions = this.importOccasions();
+		occasions = this.sort(occasions);
+		occasions = this.filterDate(date, occasions);
+		occasions = this.filterType(type, occasions);
+		av.updateView(occasions);
 	}
 }
