@@ -4,12 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class AgendaModel {
 	private DataParserCSV dp;
 	private DataWriterCSV dw;
 	private AgendaView av;
-	private ArrayList<ObserverView> observerViews;
+	private List<ObserverView> observerViews;
 	
 	public AgendaModel(AgendaView av) {
 		this.av = av;
