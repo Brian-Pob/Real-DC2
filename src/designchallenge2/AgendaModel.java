@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class AgendaModel {
@@ -14,7 +15,9 @@ public class AgendaModel {
 	
 	public AgendaModel(AgendaView av) {
 		this.av = av;
-		importOccasions();
+		GregorianCalendar gCal = new GregorianCalendar();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		this.updateViews(sdf.format(gCal.getTime()), "all");
 	}
 	
 	public /*void*/ ArrayList<Occasion> importOccasions(){
@@ -24,7 +27,7 @@ public class AgendaModel {
 			dp = new DataParserCSV("List of Occasions.csv");
 			//AgendaView.addAllEvents(dp.processData());
 			occasions = dp.processData();
-			av.updateView(occasions);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
