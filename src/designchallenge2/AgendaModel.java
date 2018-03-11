@@ -13,11 +13,12 @@ public class AgendaModel {
 	private AgendaView av;
 	//private List<ObserverView> observerViews;
 	
-	public AgendaModel(AgendaView av) {
-		this.av = av;
+	public AgendaModel(/*AgendaView av*/) {
+//		this.av = av;
+//		av.attachModel(this);
 		GregorianCalendar gCal = new GregorianCalendar();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-		this.updateViews(sdf.format(gCal.getTime()), "all");
+		//this.updateViews(sdf.format(gCal.getTime()), "all");
 	}
 	
 	public /*void*/ ArrayList<Occasion> importOccasions(){
@@ -147,7 +148,7 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
         }
         System.out.println("DEBUG END!!!");
         
-        
+        av.countUpdate();
         av.updateView(occasions); 
       } 
     
@@ -173,6 +174,10 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
     		}
     	}
     	return false;
+    }
+    
+    public void attachView(AgendaView av) {
+    	this.av = av;
     }
     
 }

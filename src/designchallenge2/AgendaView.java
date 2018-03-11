@@ -47,7 +47,9 @@ public class AgendaView extends JFrame implements Observer{
 	private JRadioButton rdbtnAllItems;
 	private JRadioButton rdbtnTasksOnly;
 	private JRadioButton rdbtnEventsOnly;
-	public AgendaView() {
+	public AgendaView(AgendaModel am) {
+		this.am = am;
+		am.attachView(this);
 		GregorianCalendar gCal = new GregorianCalendar();
 //		dateToday = gCal.get(GregorianCalendar.)
 		setSize(new Dimension(700, 500));
@@ -149,6 +151,7 @@ public class AgendaView extends JFrame implements Observer{
 		textPane.setEditable(false);
 		textPane.setName("itemsToday");
 		panel_2.add(textPane);
+		textPane.setText(Integer.toString(this.toDoCount()));
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(10, 426, 198, 35);
@@ -314,6 +317,7 @@ public class AgendaView extends JFrame implements Observer{
 				}
 			}
 		}
+		this.countUpdate();
 	}
 //	public static void main(String[] args) {
 //		NewAgendaView tv2 = new NewAgendaView();
@@ -340,5 +344,25 @@ public class AgendaView extends JFrame implements Observer{
 	public String getDateTodayStr() {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		return sdf.format(dateToday);
+	}
+	
+	public int toDoCount() {
+		int counter = 0;
+		if(this.am != null) {
+			ArrayList<Occasion> occasions = am.importOccasions();
+			ArrayList<Occasion> tasks = am.filterType("task", occasions);
+			for(Occasion o : tasks) {
+				System.out.println(o.getName());
+				if(o.IsDone()==false) {
+					counter++;
+				}
+			}
+		}
+		System.out.println(counter);
+		return counter;
+	}
+	
+	public void countUpdate() {
+		this.textPane.setText(Integer.toString(this.toDoCount()));
 	}
 }
