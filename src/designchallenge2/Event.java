@@ -18,7 +18,7 @@ public class Event extends Occasion {
 	}
 	
 	public Event(String name, String startdate, String enddate, String done) {
-		super();
+		this(name, startdate,enddate);
 		if(done.trim().equalsIgnoreCase("true")) {
 			setIsDone(true);
 		}

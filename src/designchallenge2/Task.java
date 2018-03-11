@@ -18,7 +18,7 @@ public class Task extends Occasion{
 	}
 	
 	public Task(String name, String startdate, String done) {
-		super();
+		this(name, startdate);
 		if(done.trim().equalsIgnoreCase("true")) {
 			setIsDone(true);
 		}
