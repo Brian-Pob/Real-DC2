@@ -108,7 +108,7 @@ public class AgendaView extends JFrame implements Observer{
 		
 		calendar = new JCalendar();
 		
-		
+		dateToday = calendar.getDate();
 		calendar.setBounds(10, 273, 198, 153);
 		getContentPane().add(calendar);
 		
@@ -178,27 +178,42 @@ public class AgendaView extends JFrame implements Observer{
 		rdbtnAllItems.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				rdbtnTasksOnly.setSelected(false);
-				rdbtnEventsOnly.setSelected(false);
-				am.updateViews(sdf.format(dateToday), "all");
+//				if(!rdbtnAllItems.isSelected()) {
+					rdbtnTasksOnly.setSelected(false);
+					rdbtnEventsOnly.setSelected(false);
+					am.updateViews(sdf.format(dateToday), "all");
+//				}
+//				else {
+//					rdbtnAllItems.setSelected(true);
+//				}
 			}
 		});
 		
 		rdbtnTasksOnly.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				rdbtnAllItems.setSelected(false);
-				rdbtnEventsOnly.setSelected(false);
-				am.updateViews(sdf.format(dateToday), "tasks");
+//				if(!rdbtnTasksOnly.isSelected()) {
+					rdbtnAllItems.setSelected(false);
+					rdbtnEventsOnly.setSelected(false);
+					am.updateViews(sdf.format(dateToday), "task");
+//				}
+//				else {
+//					rdbtnTasksOnly.setSelected(true);
+//				}
 			}
 		});
 		
 		rdbtnEventsOnly.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				rdbtnTasksOnly.setSelected(false);
-				rdbtnAllItems.setSelected(false);
-				am.updateViews(sdf.format(dateToday), "events");
+//				if(!rdbtnEventsOnly.isSelected()) {
+					rdbtnTasksOnly.setSelected(false);
+					rdbtnAllItems.setSelected(false);
+					am.updateViews(sdf.format(dateToday), "event");
+//				}
+//				else {
+//					rdbtnEventsOnly.setSelected(true);
+//				}
 			}
 		});
 		
@@ -215,6 +230,7 @@ public class AgendaView extends JFrame implements Observer{
 		for(int i = 0; i < /*100*/10; i++){
 			System.out.println(); //acts like a clear screen. only temporary
 		}
+		System.out.println("DEBUG VIEW START");
 		for(Occasion o: occasionsList) {//print out
 			if(o instanceof Task) {
 				Task t = (Task)o;
@@ -225,6 +241,7 @@ public class AgendaView extends JFrame implements Observer{
 									+sdf.format(e.getStartDate().getTime())+" | "+sdf.format(e.getEndDate().getTime()));
 			}
 		}
+		System.out.println("DEBUG VIEW END");
 		agendaList.removeAllElements();
 		for(Occasion o: occasionsList) { //agendaList
 			
@@ -239,7 +256,8 @@ public class AgendaView extends JFrame implements Observer{
 			}
 		}
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
-		
+		for(int i = 0; i < table.getRowCount(); i++)
+			table.setValueAt("", i, 1);
 		for(Occasion o: occasionsList) { //day view
 			if(o instanceof Task) {
 				Task t = (Task)o;
