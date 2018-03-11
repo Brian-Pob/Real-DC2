@@ -75,9 +75,9 @@ public class AgendaControl{
 				if(!start.before(end)) {
 					System.out.println("End Date must come after Start Date");
 					JOptionPane.showMessageDialog(null, "End Date must come after Start Date");
-				}else if(am.overlapChecker(event)) {
+				}else if(am.doesOverlap(event)) {
 					JOptionPane.showMessageDialog(null, "Date selected must not overlap with existing tasks/events");
-				}else if(start.before(end) && !am.overlapChecker(event)) {
+				}else if(start.before(end) && !am.doesOverlap(event)) {
 					am.addOccasion(event);
 				}
 					
@@ -108,7 +108,7 @@ public class AgendaControl{
 								+taskMenu.getCmbTime().getSelectedItem());
 				System.out.println(taskMenu.getCmbTime().getSelectedItem()+"DEBUG!!!");
 //				System.out.println(task.get);
-				if(!am.overlapChecker(task))
+				if(!am.doesOverlap(task))
 					am.addOccasion(task);
 				else {
 					JOptionPane.showMessageDialog(null, "Date selected must not overlap with any existing tasks/events.");
