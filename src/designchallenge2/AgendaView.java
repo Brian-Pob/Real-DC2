@@ -24,6 +24,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class AgendaView extends JFrame implements Observer{
 	public JTabbedPane tabbedPane;
@@ -171,21 +173,35 @@ public class AgendaView extends JFrame implements Observer{
 		panel_4 = new JPanel();
 		panel_4.setBounds(218, 273, 330, 177);
 		getContentPane().add(panel_4);
-		panel_4.setLayout(null);
 		
 		rdbtnAllItems = new JRadioButton("All Items");
 		
 		rdbtnAllItems.setSelected(true);
-		rdbtnAllItems.setBounds(6, 7, 109, 23);
-		panel_4.add(rdbtnAllItems);
 		
 		rdbtnTasksOnly = new JRadioButton("Tasks Only");
-		rdbtnTasksOnly.setBounds(6, 33, 109, 23);
-		panel_4.add(rdbtnTasksOnly);
 		
 		rdbtnEventsOnly = new JRadioButton("Events Only");
-		rdbtnEventsOnly.setBounds(6, 59, 109, 23);
-		panel_4.add(rdbtnEventsOnly);
+		GroupLayout gl_panel_4 = new GroupLayout(panel_4);
+		gl_panel_4.setHorizontalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addGap(6)
+					.addGroup(gl_panel_4.createParallelGroup(Alignment.LEADING)
+						.addComponent(rdbtnAllItems, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+						.addComponent(rdbtnTasksOnly, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+						.addComponent(rdbtnEventsOnly, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)))
+		);
+		gl_panel_4.setVerticalGroup(
+			gl_panel_4.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_4.createSequentialGroup()
+					.addGap(7)
+					.addComponent(rdbtnAllItems)
+					.addGap(3)
+					.addComponent(rdbtnTasksOnly)
+					.addGap(3)
+					.addComponent(rdbtnEventsOnly))
+		);
+		panel_4.setLayout(gl_panel_4);
 		
 		rdbtnAllItems.addMouseListener(new MouseAdapter() {
 			@Override
