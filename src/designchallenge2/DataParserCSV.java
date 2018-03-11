@@ -78,7 +78,7 @@ public class DataParserCSV implements TemplateDataParser{
 				}
 				else
 					isDone = "false";
-				event = new Event(eventDetails[1], eventDetails[2], eventDetails[3], isDone);
+				event = new Event(eventDetails[1], eventDetails[2], eventDetails[3]/*, isDone*/);
 				System.out.println(eventDetails[4]);
 				parsedData.add(event);
 			}

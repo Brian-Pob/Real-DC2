@@ -14,9 +14,10 @@ public class Event extends Occasion {
 		setStartDate(startdate);
 		setEndDate(enddate);
 		setStrColor();
-		setIsDone(false);
+		IsDone();
 	}
 	
+	/*
 	public Event(String name, String startdate, String enddate, String done) {
 		this(name, startdate,enddate);
 		if(done.trim().equalsIgnoreCase("true")) {
@@ -25,7 +26,7 @@ public class Event extends Occasion {
 		else
 			setIsDone(false);
 	}
-	
+	*/
 	@Override
 	public void setStrColor() {
 		this.strColor = "blue";

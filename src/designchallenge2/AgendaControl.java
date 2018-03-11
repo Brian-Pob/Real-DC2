@@ -139,6 +139,46 @@ public class AgendaControl{
 		return eventMenu;
 	}
 	
+	/*
+	 * public void startInstructions() {
+		//constantly checking
+		Thread instructions = new Thread() {
+        	public void run() {
+        		while(true) {
+        			
+        			
+            		try {
+                		Thread.sleep(1000);           			
+            		}catch(InterruptedException e) {} 
+            		
+            		ArrayList<Occasion> occasions = am.import();
+            		for(int i = 0; i < occasions.size())
+            		{
+            			try{
+		            		if(occasions instanceof Event){
+		            			occasions.IsDone();
+		            			Occasion newO = occasions.get(i).clone();
+		            			am.removeOccasions(occasions.get(i));
+		            			am.addOccasions(newO);
+		            		}
+		            	}catch(CloneNotSupportedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+							}
+	            	}
+         
+            	}
+            		
+      
+        			
+        	}
+        
+       };
+        instructions.start();
+        
+
+	}
+	 */
 
 	
 }

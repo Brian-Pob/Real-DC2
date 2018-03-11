@@ -9,6 +9,7 @@ public class AgendaModel {
 	private DataParserCSV dp;
 	private DataWriterCSV dw;
 	private AgendaView av;
+	private ArrayList<ObserverView> observerViews;
 	
 	public AgendaModel(AgendaView av) {
 		this.av = av;
@@ -91,7 +92,6 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
 
 	public ArrayList<Occasion> filterType(String type, ArrayList<Occasion> occasions){
 		ArrayList<Occasion> filteredOccasions = new ArrayList<Occasion>();
-		
 		switch(type) {
 			case "all" : return occasions;
 			
@@ -125,4 +125,18 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
         occasions = this.filterType(type, occasions); 
         av.updateView(occasions); 
       } 
+    
+    public void addObserver(AgendaView av) {
+    	ObserverView ov = new ObserverView(av);
+    	ov.attach(this);
+    	this.observerViews.add(ov);
+    }
+    
+    public void notifyObservers(ArrayList<Occasion> occasions) {
+    	for(ObserverView ov : this.observerViews) {
+    		ov.update(occasions);
+    	}
+    }
+    
+    
 }
