@@ -143,7 +143,7 @@ public class AgendaView extends JFrame implements Observer{
 		});
 		txtpnDateselected.setText(sdf.format(calendar.getDate()));
 		
-		JLabel label = new JLabel("New label");
+		JLabel label = new JLabel("No. of items left to do");
 		panel_2.add(label);
 		
 		textPane = new JTextPane();
