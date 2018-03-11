@@ -15,7 +15,7 @@ public class TestDriver {
 		
 		
         AgendaControl ac = new AgendaControl();
-		Event e = new Event("Ball", "12/07/1997 08:00", "12/07/1997 12:30");
+		Event e = new Event("Ball", "12/07/1997 08:00", "12/07/2020 12:30");
 		Event e2 = new Event("Party", "12/07/1987 08:00", "12/07/1997 12:30");
 		Task t = new Task("Laundry", "3/18/2018 7:30","false");
 		Task t2 = new Task("poker", "3/18/2018 12:30","true");
@@ -36,7 +36,7 @@ public class TestDriver {
 //		A.add(t2);
 //		A.add(e2);
 		
-		System.out.println(e.IsDone());
+		System.out.println("is done is : " + e.IsDone());
 		//A = ac.filterDate("03/18/2018", A);
 		/*
 		Collections.sort(A, new Comparator<Occasion>() {

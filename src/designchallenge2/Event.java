@@ -19,9 +19,11 @@ public class Event extends Occasion {
 	
 	public Event(String name, String startdate, String enddate, String done) {
 		super();
-		System.out.println("Test in Event: " + done);
-		setIsDone(Boolean.parseBoolean(done));
-		System.out.println("Test in Event: " + done);
+		if(done.trim().equalsIgnoreCase("true")) {
+			setIsDone(true);
+		}
+		else
+			setIsDone(false);
 	}
 	
 	@Override
@@ -43,7 +45,7 @@ public class Event extends Occasion {
 	public boolean IsDone() {
 		Calendar curr = Calendar.getInstance();
 		 
-	    if(this.endDate.after(curr)) {
+	    if(this.endDate.before(curr)) {
 	      setIsDone(true);
 	      return true;
 	    }

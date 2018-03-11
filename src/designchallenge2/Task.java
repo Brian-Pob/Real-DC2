@@ -13,20 +13,17 @@ public class Task extends Occasion{
 		setName(name);
 		setStartDate(startdate);
 		setEndDate(startdate);
-		//setStartTime(starttime);
 		setStrColor();
 		this.isDone = false;
 	}
 	
 	public Task(String name, String startdate, String done) {
-		//super();
-		setName(name);
-		setStartDate(startdate);
-		setEndDate(startdate);
-		setStrColor();
-		System.out.println("Test:"+done);
-		setIsDone(Boolean.parseBoolean(done));
-		System.out.println("Test:"+done);
+		super();
+		if(done.trim().equalsIgnoreCase("true")) {
+			setIsDone(true);
+		}
+		else
+			setIsDone(false);
 	}
 
 	@Override

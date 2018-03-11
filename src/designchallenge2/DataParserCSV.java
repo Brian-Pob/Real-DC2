@@ -51,7 +51,7 @@ public class DataParserCSV implements TemplateDataParser{
 		ArrayList<Occasion> parsedData = new ArrayList<Occasion>();
 		Occasion event = null;
 		ArrayList<String> dataList = new ArrayList<String>(readData());
-		
+		String isDone;
 		int i = filename.lastIndexOf('.');
 		if (i > 0) {
 		    extension = filename.substring(i+1);
@@ -62,13 +62,23 @@ public class DataParserCSV implements TemplateDataParser{
 		for(String s: dataList) {
 			eventDetails = s.split(delimiter);
 			if(eventDetails[0].equals("Task")) {
-				event = new Task(eventDetails[1], eventDetails[2],eventDetails[3]);
+				if(eventDetails[3].trim().equalsIgnoreCase("true")) {
+					isDone = "true";
+				}
+				else
+					isDone = "false";
+				event = new Task(eventDetails[1], eventDetails[2]/*,isDone*/);
 				System.out.println(eventDetails[3]);
 				parsedData.add(event);
 			}
 			
 			else if(eventDetails[0].equals("Event")) {
-				event = new Event(eventDetails[1], eventDetails[2], eventDetails[3]/*, eventDetails[4]*/);
+				if(eventDetails[4].trim().equalsIgnoreCase("true")) {
+					isDone = "true";
+				}
+				else
+					isDone = "false";
+				event = new Event(eventDetails[1], eventDetails[2], eventDetails[3]/*, isDone*/);
 				System.out.println(eventDetails[4]);
 				parsedData.add(event);
 			}
