@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public abstract class Occasion{
+public abstract class Occasion implements Cloneable{
 	protected Calendar startDate;
 	protected Calendar endDate;
 	protected String name;
@@ -106,6 +106,11 @@ public abstract class Occasion{
 	public boolean isOverlap(Occasion otherOccasion) {
 		return (this.isBetween(this.getStartDate(), otherOccasion) || this.isBetween(this.getEndDate(), otherOccasion));
 	}
+	
+    public Object clone()  throws CloneNotSupportedException{
+    	Occasion o = (Occasion) super.clone();
+    	return o;
+    }
 	
 	
 }
