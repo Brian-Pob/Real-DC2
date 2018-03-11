@@ -23,6 +23,7 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
 
 public class AgendaView extends JFrame implements Observer{
 	public JTabbedPane tabbedPane;
@@ -39,6 +40,11 @@ public class AgendaView extends JFrame implements Observer{
 	public JLabel lblTesting;
 	public JPanel panel_2;
 	private Date dateToday;
+	private JPanel panel_4;
+	private JTextPane textPane;
+	private JRadioButton rdbtnAllItems;
+	private JRadioButton rdbtnTasksOnly;
+	private JRadioButton rdbtnEventsOnly;
 	public AgendaView() {
 		GregorianCalendar gCal = new GregorianCalendar();
 //		dateToday = gCal.get(GregorianCalendar.)
@@ -107,7 +113,7 @@ public class AgendaView extends JFrame implements Observer{
 		getContentPane().add(calendar);
 		
 		panel_2 = new JPanel();
-		panel_2.setBounds(394, 297, 188, 111);
+		panel_2.setBounds(558, 273, 116, 177);
 		getContentPane().add(panel_2);
 		
 		lblTesting = new JLabel("Testing:");
@@ -127,6 +133,15 @@ public class AgendaView extends JFrame implements Observer{
 		});
 		txtpnDateselected.setText(sdf.format(calendar.getDate()));
 		
+		JLabel label = new JLabel("New label");
+		panel_2.add(label);
+		
+		textPane = new JTextPane();
+		textPane.setPreferredSize(new Dimension(20, 20));
+		textPane.setEditable(false);
+		textPane.setName("itemsToday");
+		panel_2.add(textPane);
+		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(10, 426, 198, 35);
 		getContentPane().add(panel_3);
@@ -140,6 +155,55 @@ public class AgendaView extends JFrame implements Observer{
 			}
 		});
 		panel_3.add(btnNewButton);
+		
+		panel_4 = new JPanel();
+		panel_4.setBounds(218, 273, 330, 177);
+		getContentPane().add(panel_4);
+		panel_4.setLayout(null);
+		
+		rdbtnAllItems = new JRadioButton("All Items");
+		
+		rdbtnAllItems.setSelected(true);
+		rdbtnAllItems.setBounds(6, 7, 109, 23);
+		panel_4.add(rdbtnAllItems);
+		
+		rdbtnTasksOnly = new JRadioButton("Tasks Only");
+		rdbtnTasksOnly.setBounds(6, 33, 109, 23);
+		panel_4.add(rdbtnTasksOnly);
+		
+		rdbtnEventsOnly = new JRadioButton("Events Only");
+		rdbtnEventsOnly.setBounds(6, 59, 109, 23);
+		panel_4.add(rdbtnEventsOnly);
+		
+		rdbtnAllItems.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				rdbtnTasksOnly.setSelected(false);
+				rdbtnEventsOnly.setSelected(false);
+				am.updateViews(sdf.format(dateToday), "all");
+			}
+		});
+		
+		rdbtnTasksOnly.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				rdbtnAllItems.setSelected(false);
+				rdbtnEventsOnly.setSelected(false);
+				am.updateViews(sdf.format(dateToday), "tasks");
+			}
+		});
+		
+		rdbtnEventsOnly.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				rdbtnTasksOnly.setSelected(false);
+				rdbtnAllItems.setSelected(false);
+				am.updateViews(sdf.format(dateToday), "events");
+			}
+		});
+		
+		
+		
 	}
 	
 	public void addToAgendaList(String str) {
@@ -214,5 +278,17 @@ public class AgendaView extends JFrame implements Observer{
 	}
 	public void attachControl(AgendaControl ac) {
 		this.ac = ac;
+	}
+	
+	public JRadioButton getRdbtnAllItems() {
+		return rdbtnAllItems;
+	}
+
+	public JRadioButton getRdbtnTasksOnly() {
+		return rdbtnTasksOnly;
+	}
+
+	public JRadioButton getRdbtnEventsOnly() {
+		return rdbtnEventsOnly;
 	}
 }
