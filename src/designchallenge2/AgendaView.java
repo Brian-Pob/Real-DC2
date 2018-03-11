@@ -321,4 +321,8 @@ public class AgendaView extends JFrame implements Observer{
 	public JRadioButton getRdbtnEventsOnly() {
 		return rdbtnEventsOnly;
 	}
+	public String getDateTodayStr() {
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		return sdf.format(dateToday);
+	}
 }
