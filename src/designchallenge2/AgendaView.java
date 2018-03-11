@@ -129,6 +129,12 @@ public class AgendaView extends JFrame implements Observer{
 			public void mouseClicked(MouseEvent e) {
 				dateToday = calendar.getDate();
 				txtpnDateselected.setText(sdf.format(dateToday));
+				if(rdbtnAllItems.isSelected())
+					am.updateViews(sdf.format(dateToday), "all");
+				else if(rdbtnTasksOnly.isSelected())
+					am.updateViews(sdf.format(dateToday), "task");
+				else if(rdbtnEventsOnly.isSelected())
+					am.updateViews(sdf.format(dateToday), "event");
 			}
 		});
 		txtpnDateselected.setText(sdf.format(calendar.getDate()));
@@ -152,6 +158,12 @@ public class AgendaView extends JFrame implements Observer{
 			public void mouseClicked(MouseEvent e) {
 				dateToday = calendar.getDate();
 				txtpnDateselected.setText(sdf.format(dateToday));
+				if(rdbtnAllItems.isSelected())
+					am.updateViews(sdf.format(dateToday), "all");
+				else if(rdbtnTasksOnly.isSelected())
+					am.updateViews(sdf.format(dateToday), "task");
+				else if(rdbtnEventsOnly.isSelected())
+					am.updateViews(sdf.format(dateToday), "event");
 			}
 		});
 		panel_3.add(btnNewButton);
