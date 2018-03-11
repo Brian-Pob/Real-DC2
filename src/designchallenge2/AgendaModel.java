@@ -85,6 +85,7 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
 		for(Occasion o : occasions) {
 			formatted = formatter.format(o.getStartDate().getTime());
 			dateDetails = formatted.split(delimiter);
+			System.out.println(dateDetails[0]+" == "+date);
 			if(dateDetails[0].equals(date)) {
 				filteredOccasions.add(o);
 			}
@@ -117,14 +118,33 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
 		}
 		
 		
+		
 		return filteredOccasions;
 	}
     
     public void updateViews(String date, String type){ 
         ArrayList<Occasion> occasions = this.importOccasions(); 
         occasions = this.sort(occasions); 
-        occasions = this.filterDate(date, occasions); 
         occasions = this.filterType(type, occasions); 
+        System.out.println("DEBUG START!!!");
+        occasions = this.filterDate(date, occasions); 
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        if(occasions.isEmpty())
+        	System.out.println("List is empty");
+        for(Occasion o: occasions) {
+        	if(o instanceof Task) {
+				Task t = (Task)o;
+				System.out.println("TASK | "+t.getName()+" | "+t.getStrColor()+" | "+sdf.format(t.getStartDate().getTime()));
+			}else if(o instanceof Event) {
+				Event e = (Event)o;
+				System.out.println("EVENT | "+e.getName()+" | "+e.getStrColor()+" | "
+									+sdf.format(e.getStartDate().getTime())+" | "+sdf.format(e.getEndDate().getTime()));
+			}
+        }
+        System.out.println("DEBUG END!!!");
+        
+        
         av.updateView(occasions); 
       } 
     
