@@ -35,7 +35,7 @@ public class Task extends Occasion{
 	@Override
 	public void setEndDate(String input) {
 		Calendar cal = convertDate(input);
-		cal.add(Calendar.MINUTE, 30);
+//		cal.add(Calendar.MINUTE, 30);
 		this.endDate = cal;
 
 	}

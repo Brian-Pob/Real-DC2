@@ -79,6 +79,13 @@ public class AgendaControl{
 					JOptionPane.showMessageDialog(null, "Date selected must not overlap with existing tasks/events");
 				}else if(start.before(end) && !am.doesOverlap(event)) {
 					am.addOccasion(event);
+					if(av.getRdbtnAllItems().isSelected()) {
+						am.updateViews(av.getDateTodayStr(), "all");
+					}else if(av.getRdbtnTasksOnly().isSelected()) {
+						am.updateViews(av.getDateTodayStr(), "task");
+					}else if(av.getRdbtnEventsOnly().isSelected()) {
+						am.updateViews(av.getDateTodayStr(), "event");
+					}
 				}
 					
 				
@@ -108,8 +115,17 @@ public class AgendaControl{
 								+taskMenu.getCmbTime().getSelectedItem());
 				System.out.println(taskMenu.getCmbTime().getSelectedItem()+"DEBUG!!!");
 //				System.out.println(task.get);
-				if(!am.doesOverlap(task))
+				if(!am.doesOverlap(task)) {
 					am.addOccasion(task);
+					//am.updateView(dateToday, 
+					if(av.getRdbtnAllItems().isSelected()) {
+						am.updateViews(av.getDateTodayStr(), "all");
+					}else if(av.getRdbtnTasksOnly().isSelected()) {
+						am.updateViews(av.getDateTodayStr(), "task");
+					}else if(av.getRdbtnEventsOnly().isSelected()) {
+						am.updateViews(av.getDateTodayStr(), "event");
+					}
+				}
 				else {
 					JOptionPane.showMessageDialog(null, "Date selected must not overlap with any existing tasks/events.");
 				}
