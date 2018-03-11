@@ -10,7 +10,7 @@ public class AgendaModel {
 	private DataParserCSV dp;
 	private DataWriterCSV dw;
 	private AgendaView av;
-	private List<ObserverView> observerViews;
+	//private List<ObserverView> observerViews;
 	
 	public AgendaModel(AgendaView av) {
 		this.av = av;
@@ -52,6 +52,7 @@ public class AgendaModel {
     	exportOccasions(occasionsList);
     	importOccasions();
     	//update view
+
     }
     
 public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
@@ -127,6 +128,7 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
         av.updateView(occasions); 
       } 
     
+    /*
     public void addObserver(AgendaView av) {
     	ObserverView ov = new ObserverView(av);
     	ov.attach(this);
@@ -138,6 +140,7 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
     		ov.update(occasions);
     	}
     }
+    */
     
     public boolean overlapChecker(Occasion occasion) {
     	ArrayList<Occasion>occasions = this.importOccasions();

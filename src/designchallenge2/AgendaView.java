@@ -24,7 +24,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
-public class AgendaView extends JFrame {
+public class AgendaView extends JFrame implements Observer{
 	public JTabbedPane tabbedPane;
 	public JPanel panel;
 	public JPanel panel_1;
