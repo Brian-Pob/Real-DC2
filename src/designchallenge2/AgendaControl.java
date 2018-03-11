@@ -71,12 +71,17 @@ public class AgendaControl{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				if(start.before(end))
-					am.addOccasion(event);
-				else {
+				
+				if(!start.before(end)) {
 					System.out.println("End Date must come after Start Date");
 					JOptionPane.showMessageDialog(null, "End Date must come after Start Date");
+				}else if(am.overlapChecker(event)) {
+					JOptionPane.showMessageDialog(null, "Date selected must not overlap with existing tasks/events");
+				}else if(start.before(end) && !am.overlapChecker(event)) {
+					am.addOccasion(event);
 				}
+					
+				
 			}
 			else {
 				System.out.println("Input field cannot be empty");
@@ -103,7 +108,11 @@ public class AgendaControl{
 								+taskMenu.getCmbTime().getSelectedItem());
 				System.out.println(taskMenu.getCmbTime().getSelectedItem()+"DEBUG!!!");
 //				System.out.println(task.get);
-				am.addOccasion(task);
+				if(!am.overlapChecker(task))
+					am.addOccasion(task);
+				else {
+					JOptionPane.showMessageDialog(null, "Date selected must not overlap with any existing tasks/events.");
+				}
 				
 			}
 			else {

@@ -39,7 +39,6 @@ public class AgendaView extends JFrame implements Observer{
 	public JLabel lblTesting;
 	public JPanel panel_2;
 	private Date dateToday;
-	public JButton btnChangeDate;
 	public AgendaView() {
 		GregorianCalendar gCal = new GregorianCalendar();
 //		dateToday = gCal.get(GregorianCalendar.)
@@ -118,24 +117,29 @@ public class AgendaView extends JFrame implements Observer{
 		panel_2.add(txtpnDateselected);
 		txtpnDateselected.setEditable(false);
 		txtpnDateselected.setText("dateSelected");
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		calendar.getDayChooser().getDayPanel().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				txtpnDateselected.setText(sdf.format(calendar.getDate()));
+				dateToday = calendar.getDate();
+				txtpnDateselected.setText(sdf.format(dateToday));
 			}
 		});
 		txtpnDateselected.setText(sdf.format(calendar.getDate()));
 		
-		btnChangeDate = new JButton("Change Date");
-		btnChangeDate.addMouseListener(new MouseAdapter() {
+		JPanel panel_3 = new JPanel();
+		panel_3.setBounds(10, 426, 198, 35);
+		getContentPane().add(panel_3);
+		
+		JButton btnNewButton = new JButton("Change Date");
+		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				txtpnDateselected.setText(sdf.format(calendar.getDate()));
+				dateToday = calendar.getDate();
+				txtpnDateselected.setText(sdf.format(dateToday));
 			}
 		});
-		btnChangeDate.setBounds(10, 427, 198, 23);
-		getContentPane().add(btnChangeDate);
+		panel_3.add(btnNewButton);
 	}
 	
 	public void addToAgendaList(String str) {

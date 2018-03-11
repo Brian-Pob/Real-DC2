@@ -145,7 +145,7 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
     public boolean overlapChecker(Occasion occasion) {
     	ArrayList<Occasion>occasions = this.importOccasions();
     	for(Occasion o : occasions) {
-    		if(o.isOverlap(occasion) == true){
+    		if(o.isOverlap(occasion)){
     			return true;
     		}
     	}
