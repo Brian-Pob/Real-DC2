@@ -270,17 +270,12 @@ public class AgendaView extends JFrame implements Observer{
 				}
 			}
 		});
-		
-		JButton btnMarkDone = new JButton("Mark Done");
-		btnMarkDone.setPreferredSize(new Dimension(89, 23));
 		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
 		gl_panel_5.setHorizontalGroup(
 			gl_panel_5.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_5.createSequentialGroup()
 					.addGap(33)
-					.addGroup(gl_panel_5.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(btnMarkDone, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(btnDeleteOccasion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addComponent(btnDeleteOccasion)
 					.addGap(34))
 		);
 		gl_panel_5.setVerticalGroup(
@@ -288,9 +283,7 @@ public class AgendaView extends JFrame implements Observer{
 				.addGroup(gl_panel_5.createSequentialGroup()
 					.addGap(53)
 					.addComponent(btnDeleteOccasion)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(btnMarkDone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(67))
+					.addGap(101))
 		);
 		panel_5.setLayout(gl_panel_5);
 		
