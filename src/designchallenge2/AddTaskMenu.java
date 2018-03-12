@@ -54,7 +54,12 @@ public class AddTaskMenu extends JFrame {
 		end.set(Calendar.MINUTE, 59);
 		String timeString = "";
 		GregorianCalendar gCal = new GregorianCalendar();
-
+		int hourBound = gCal.get(GregorianCalendar.HOUR_OF_DAY);
+		int minuteBound = gCal.get(GregorianCalendar.MINUTE);
+		int monthBound = gCal.get(GregorianCalendar.MONTH);
+		int dayBound = gCal.get(GregorianCalendar.DATE);
+		int yearBound = gCal.get(GregorianCalendar.YEAR);
+		
 		do {
 			timeString = Integer.toString(start.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(start.get(Calendar.MINUTE));
 //			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
@@ -65,38 +70,55 @@ public class AddTaskMenu extends JFrame {
 			cmbTime.addItem(timeString);
 			start.add(Calendar.MINUTE, 30);
 		}while(start.getTime().before(end.getTime()));
-		int hourBound = gCal.get(GregorianCalendar.HOUR_OF_DAY);
-		int minuteBound = gCal.get(GregorianCalendar.MINUTE);
-		//System.out.println(minuteBound);
+		
+		
 		if(minuteBound <= 30)
 			minuteBound = 30;
 		else if(minuteBound > 30) {
 			minuteBound = 0;
 			hourBound++;
+			if(hourBound == 24) {
+				hourBound = 0;
+				cmbDay.setSelectedItem(cmbDay.getSelectedIndex()+2);
+			}
 		}
+		
 		String curTime = hourBound+":"+minuteBound;
 		if(minuteBound == 0)
 			curTime = curTime+"0";
 		System.out.println(curTime);
 		cmbTime.setSelectedItem(curTime);
 		
-		int yearBound = gCal.get(GregorianCalendar.YEAR);
 		for(int i = yearBound-100; i <= yearBound+100; i++) {
 			cmbYear.addItem(i);
 		}
 		cmbYear.setSelectedIndex(100);
 		
-		int monthBound = gCal.get(GregorianCalendar.MONTH);
+		
 		for(int i = 1; i<=12; i++) {
 			cmbMonth.addItem(i);
 		}
 		cmbMonth.setSelectedIndex(monthBound);
 		
-		int dayBound = gCal.get(GregorianCalendar.DATE);
+		
 		for(int i = 1; i <= 31; i++) {
 			cmbDay.addItem(i);
 		}
 		cmbDay.setSelectedIndex(dayBound-1);
+		
+		if(minuteBound == 30) {
+			minuteBound = 0;
+			hourBound++;
+			if(hourBound == 24) {
+				hourBound = 0;
+				cmbDay.setSelectedItem(cmbDay.getSelectedIndex()+2);
+			}
+		}else if(minuteBound == 0) {
+			minuteBound = 30;
+			if(hourBound == 0) {
+				cmbDay.setSelectedItem(cmbDay.getSelectedIndex()+2);
+			}
+		}
 		
 		lblMonthDayYear = new JLabel("Month          Day             Year            Time");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());

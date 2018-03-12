@@ -37,6 +37,7 @@ public class AddEventMenu extends JFrame{
 	private JLabel lblCmbLabel = new JLabel("MM           DD          YYYY       hh:mm");
 	
 	public AddEventMenu() {
+		setTitle("Add Event Menu");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Calendar start = Calendar.getInstance();
 		start.set(Calendar.HOUR_OF_DAY, 0);
@@ -113,7 +114,6 @@ public class AddEventMenu extends JFrame{
 		}else if(minuteBound == 0) {
 			minuteBound = 30;
 			if(hourBound == 0) {
-//				hourBound = 0;
 				cmbEndDay.setSelectedItem(cmbEndDay.getSelectedIndex()+2);
 			}
 		}
