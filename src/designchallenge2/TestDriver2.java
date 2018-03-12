@@ -30,6 +30,7 @@ public class TestDriver2 {
 		ac.attachEventMenu(aem);
 		
 		av.attachControl(ac);
+		//ac.startInstructions();
 	}
 
 }

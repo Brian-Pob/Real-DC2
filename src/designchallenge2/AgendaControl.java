@@ -164,8 +164,7 @@ public class AgendaControl{
 		return eventMenu;
 	}
 	
-	/*
-	 * public void startInstructions() {
+	public void startInstructions() {
 		//constantly checking
 		Thread instructions = new Thread() {
         	public void run() {
@@ -176,21 +175,31 @@ public class AgendaControl{
                 		Thread.sleep(1000);           			
             		}catch(InterruptedException e) {} 
             		
-            		ArrayList<Occasion> occasions = am.import();
-            		for(int i = 0; i < occasions.size())
+            		ArrayList<Occasion> occasions = am.importOccasions();
+            		for(int i = 0; i < occasions.size(); i++)
             		{
             			try{
-		            		if(occasions instanceof Event){
-		            			occasions.IsDone();
-		            			Occasion newO = occasions.get(i).clone();
-		            			am.removeOccasions(occasions.get(i));
-		            			am.addOccasions(newO);
+		            		if(occasions.get(i) instanceof Event){
+		            			Occasion newO = (Occasion) occasions.get(i).clone();
+		            			newO.IsDone();
+		            			am.removeOccasion(occasions.get(i));
+		            			am.addOccasion(newO);
+		            			
+		            			
+		            			
 		            		}
 		            	}catch(CloneNotSupportedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 							}
 	            	}
+            		if(av.getRdbtnAllItems().isSelected()) {
+						am.updateViews(av.getDateTodayStr(), "all");
+					}else if(av.getRdbtnTasksOnly().isSelected()) {
+						am.updateViews(av.getDateTodayStr(), "task");
+					}else if(av.getRdbtnEventsOnly().isSelected()) {
+						am.updateViews(av.getDateTodayStr(), "event");
+					}
          
             	}
             		
@@ -203,7 +212,7 @@ public class AgendaControl{
         
 
 	}
-	 */
+	
 
 	
 }

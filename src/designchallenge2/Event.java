@@ -50,6 +50,7 @@ public class Event extends Occasion {
 	      setIsDone(true);
 	      return true;
 	    }
+	    setIsDone(false);
 	    return false;
 	    
 	 

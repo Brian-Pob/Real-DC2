@@ -55,6 +55,7 @@ public class AgendaView extends JFrame implements Observer{
 		SimpleDateFormat sdfh = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 //		dateToday = gCal.get(GregorianCalendar.)
 		setSize(new Dimension(700, 500));
+		setResizable(false);
 		setVisible(true);
 		getContentPane().setLayout(null);
 		
@@ -85,28 +86,27 @@ public class AgendaView extends JFrame implements Observer{
 						System.out.println(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()-1));
 						ArrayList<Occasion> occ = am.importOccasions();
 						for(Occasion o: occ) {
-							if(o instanceof Task) {
-								Task t = (Task)o;
+							
 								
-								if(sdfh.format(t.getStartDate().getTime()).equals(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()-1))) {
-									t.setIsDone(true);
-									if(rdbtnAllItems.isSelected()) {
-										am.exportOccasions(occ);
-										am.updateViews(sdf.format(dateToday), "all");
-										break;
-									}
-									else if(rdbtnTasksOnly.isSelected()) {
-										am.exportOccasions(occ);
-										am.updateViews(sdf.format(dateToday), "task");
-										break;
-									}
-									else if(rdbtnEventsOnly.isSelected()) {
-										am.exportOccasions(occ);
-										am.updateViews(sdf.format(dateToday), "event");
-										break;
-									}
+							if(sdfh.format(o.getStartDate().getTime()).equals(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()-1))) {
+								o.setIsDone(true);
+								if(rdbtnAllItems.isSelected()) {
+									am.exportOccasions(occ);
+									am.updateViews(sdf.format(dateToday), "all");
+									break;
+								}
+								else if(rdbtnTasksOnly.isSelected()) {
+									am.exportOccasions(occ);
+									am.updateViews(sdf.format(dateToday), "task");
+									break;
+								}
+								else if(rdbtnEventsOnly.isSelected()) {
+									am.exportOccasions(occ);
+									am.updateViews(sdf.format(dateToday), "event");
+									break;
 								}
 							}
+							
 						}
 					}
 					
@@ -138,7 +138,7 @@ public class AgendaView extends JFrame implements Observer{
 		}while(start.getTime().before(end.getTime()));
 		
 		table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
-		table.getColumnModel().getColumn(0).setPreferredWidth(350);
+		table.getColumnModel().getColumn(0).setPreferredWidth(275);
 		table.getColumnModel().getColumn(1).setPreferredWidth(350);
 		
 		scrollPane.setViewportView(table);
@@ -329,9 +329,14 @@ public class AgendaView extends JFrame implements Observer{
 					agendaList.addElement("<html> <font color=\""+t.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+sdf.format(t.getStartDate().getTime())+" - "+t.getName()+"</span></font></html>");
 			}else if(o instanceof Event) {
 				Event e = (Event)o;
-				agendaList.addElement("<html> <font color=\""+e.getStrColor()+"\""+">"+sdf.format(e.getStartDate().getTime())
-									+" - "+sdf.format(e.getEndDate().getTime())+" - "+e.getName()
+				if(!e.IsDone())
+					agendaList.addElement("<html> <font color=\""+e.getStrColor()+"\""+">"+sdf.format(e.getStartDate().getTime())
+									+" - "+sdf.format(e.getEndDate().getTime())+" - "+e.getName()+"</font></html>"
 									);
+				else
+					agendaList.addElement("<html> <font color=\""+e.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+sdf.format(e.getStartDate().getTime())
+					+" - "+sdf.format(e.getEndDate().getTime())+" - "+e.getName()+"</span></font></html>"
+					);
 			}
 		}
 		SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
@@ -356,13 +361,19 @@ public class AgendaView extends JFrame implements Observer{
 				String endTimeStr = timeFormat.format(e.getEndDate().getTime());
 				for(int rowNum = 0; rowNum < table.getRowCount();rowNum++) {
 					if(table.getValueAt(rowNum, 0).equals(startTimeStr)) {
-						table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+e.getName()+" - START"+"</font></html>", rowNum, 1);
+						if(!e.IsDone())
+							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+e.getName()+" - START"+"</font></html>", rowNum, 1);
+						else
+							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+e.getName()+" - START"+"</span></font></html>", rowNum, 1);
 						rowNum++;
 						while(!table.getValueAt(rowNum, 0).equals(endTimeStr)) {
 							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+"~"+"</font><html>", rowNum, 1);
 							rowNum++;
 						}
-						table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+e.getName()+" - END"+"</font></html>", rowNum, 1);
+						if(!e.IsDone())
+							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+e.getName()+" - END"+"</font></html>", rowNum, 1);
+						else
+							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+e.getName()+" - END"+"</span></font></html>", rowNum, 1);
 					}
 					
 				}
