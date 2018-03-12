@@ -113,7 +113,7 @@ public class AgendaControl{
 								+taskMenu.getCmbDay().getSelectedItem()+"/"
 								+taskMenu.getCmbYear().getSelectedItem()+" "
 								+taskMenu.getCmbTime().getSelectedItem());
-				System.out.println(taskMenu.getCmbTime().getSelectedItem()+"DEBUG!!!");
+//				System.out.println(taskMenu.getCmbTime().getSelectedItem()+"DEBUG!!!");
 //				System.out.println(task.get);
 				if(!am.doesOverlap(task)) {
 					am.addOccasion(task);

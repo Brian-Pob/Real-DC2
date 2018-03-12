@@ -40,13 +40,14 @@ public class AgendaModel {
     
     public void exportOccasions(ArrayList<Occasion> occasions) {
         dw = new DataWriterCSV(occasions);
+        importOccasions();
     }
     
     public void addOccasion(Occasion occasion) {
     	ArrayList<Occasion> occasionsList = new ArrayList<Occasion>(dp.processData());
     	occasionsList.add(occasion);
     	exportOccasions(occasionsList);
-    	importOccasions();
+    	
     	//update view
     }
     
@@ -54,7 +55,7 @@ public class AgendaModel {
     	ArrayList<Occasion> occasionsList = new ArrayList<Occasion>(dp.processData());
     	occasionsList.remove(occasion);
     	exportOccasions(occasionsList);
-    	importOccasions();
+    	
     	//update view
 
     }
@@ -130,9 +131,10 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
         ArrayList<Occasion> occasions = this.importOccasions(); 
         occasions = this.sort(occasions); 
         occasions = this.filterType(type, occasions); 
-        System.out.println("DEBUG START!!!");
+//        System.out.println("DEBUG START!!!");
         occasions = this.filterDate(date, occasions); 
         
+        /*
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
         if(occasions.isEmpty())
         	System.out.println("List is empty");
@@ -147,7 +149,7 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
 			}
         }
         System.out.println("DEBUG END!!!");
-        
+        */
         av.countUpdate();
         av.updateView(occasions); 
       } 

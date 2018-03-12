@@ -51,6 +51,8 @@ public class AgendaView extends JFrame implements Observer{
 		this.am = am;
 		am.attachView(this);
 		GregorianCalendar gCal = new GregorianCalendar();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		SimpleDateFormat sdfh = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 //		dateToday = gCal.get(GregorianCalendar.)
 		setSize(new Dimension(700, 500));
 		setVisible(true);
@@ -75,6 +77,46 @@ public class AgendaView extends JFrame implements Observer{
 		
 		
 		table = new JTable(dtm);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getClickCount()==2) {
+					if(table.getSelectedColumn()!=0) {
+						System.out.println(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()-1));
+						ArrayList<Occasion> occ = am.importOccasions();
+						for(Occasion o: occ) {
+							if(o instanceof Task) {
+								Task t = (Task)o;
+								
+								if(sdfh.format(t.getStartDate().getTime()).equals(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()-1))) {
+									t.setIsDone(true);
+									if(rdbtnAllItems.isSelected()) {
+										am.exportOccasions(occ);
+										am.updateViews(sdf.format(dateToday), "all");
+										break;
+									}
+									else if(rdbtnTasksOnly.isSelected()) {
+										am.exportOccasions(occ);
+										am.updateViews(sdf.format(dateToday), "task");
+										break;
+									}
+									else if(rdbtnEventsOnly.isSelected()) {
+										am.exportOccasions(occ);
+										am.updateViews(sdf.format(dateToday), "event");
+										break;
+									}
+								}
+							}
+						}
+					}
+					
+					else {
+						System.out.println(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
+					}
+				}
+				
+			}
+		});
 		
 		Calendar start = Calendar.getInstance();
 		start.set(Calendar.HOUR_OF_DAY, 0);
@@ -127,7 +169,7 @@ public class AgendaView extends JFrame implements Observer{
 		panel_2.add(txtpnDateselected);
 		txtpnDateselected.setEditable(false);
 		txtpnDateselected.setText("dateSelected");
-		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		
 		calendar.getDayChooser().getDayPanel().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -163,12 +205,15 @@ public class AgendaView extends JFrame implements Observer{
 			public void mouseClicked(MouseEvent e) {
 				dateToday = calendar.getDate();
 				txtpnDateselected.setText(sdf.format(dateToday));
-				if(rdbtnAllItems.isSelected())
+				if(rdbtnAllItems.isSelected()) {
 					am.updateViews(sdf.format(dateToday), "all");
-				else if(rdbtnTasksOnly.isSelected())
+				}
+				else if(rdbtnTasksOnly.isSelected()) {
 					am.updateViews(sdf.format(dateToday), "task");
-				else if(rdbtnEventsOnly.isSelected())
+				}
+				else if(rdbtnEventsOnly.isSelected()) {
 					am.updateViews(sdf.format(dateToday), "event");
+					}
 			}
 		});
 		panel_3.add(btnNewButton);
@@ -261,7 +306,7 @@ public class AgendaView extends JFrame implements Observer{
 		for(int i = 0; i < /*100*/10; i++){
 			System.out.println(); //acts like a clear screen. only temporary
 		}
-		System.out.println("DEBUG VIEW START");
+//		System.out.println("DEBUG VIEW START");
 		for(Occasion o: occasionsList) {//print out
 			if(o instanceof Task) {
 				Task t = (Task)o;
@@ -272,13 +317,16 @@ public class AgendaView extends JFrame implements Observer{
 									+sdf.format(e.getStartDate().getTime())+" | "+sdf.format(e.getEndDate().getTime()));
 			}
 		}
-		System.out.println("DEBUG VIEW END");
+//		System.out.println("DEBUG VIEW END");
 		agendaList.removeAllElements();
 		for(Occasion o: occasionsList) { //agendaList
 			
 			if(o instanceof Task) {
 				Task t = (Task)o;
-				agendaList.addElement("<html> <font color=\""+t.getStrColor()+"\""+">"+sdf.format(t.getStartDate().getTime())+" - "+t.getName()+"</font></html>");
+				if(!t.IsDone())	
+					agendaList.addElement("<html> <font color=\""+t.getStrColor()+"\""+">"+sdf.format(t.getStartDate().getTime())+" - "+t.getName()+"</font></html>");
+				else
+					agendaList.addElement("<html> <font color=\""+t.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+sdf.format(t.getStartDate().getTime())+" - "+t.getName()+"</span></font></html>");
 			}else if(o instanceof Event) {
 				Event e = (Event)o;
 				agendaList.addElement("<html> <font color=\""+e.getStrColor()+"\""+">"+sdf.format(e.getStartDate().getTime())
@@ -295,7 +343,10 @@ public class AgendaView extends JFrame implements Observer{
 				String timeStr = timeFormat.format(t.getStartDate().getTime());
 				for(int rowNum = 0; rowNum < table.getRowCount(); rowNum++) {
 					if(table.getValueAt(rowNum, 0).equals(timeStr)) {
-						table.setValueAt("<html> <font color=\""+t.getStrColor()+"\""+">"+t.getName()+"</font></html>", rowNum, 1);
+						if(!t.IsDone())
+							table.setValueAt("<html> <font color=\""+t.getStrColor()+"\""+">"+t.getName()+"</font></html>", rowNum, 1);
+						else
+							table.setValueAt("<html> <font color=\""+t.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+t.getName()+"</span></font></html>", rowNum, 1);
 						
 					}
 				}
@@ -348,17 +399,19 @@ public class AgendaView extends JFrame implements Observer{
 	
 	public int toDoCount() {
 		int counter = 0;
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		if(this.am != null) {
 			ArrayList<Occasion> occasions = am.importOccasions();
 			ArrayList<Occasion> tasks = am.filterType("task", occasions);
+			//tasks = am.filterDate(sdf.format(dateToday), tasks);
 			for(Occasion o : tasks) {
-				System.out.println(o.getName());
+//				System.out.println(o.getName());
 				if(o.IsDone()==false) {
 					counter++;
 				}
 			}
 		}
-		System.out.println(counter);
+//		System.out.println(counter);
 		return counter;
 	}
 	
