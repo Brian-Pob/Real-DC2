@@ -456,14 +456,17 @@ public class AgendaView extends JFrame implements Observer{
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		if(this.am != null) {
 			ArrayList<Occasion> occasions = am.importOccasions();
-			ArrayList<Occasion> tasks = am.filterType("task", occasions);
-			//tasks = am.filterDate(sdf.format(dateToday), tasks);
-			for(Occasion o : tasks) {
-//				System.out.println(o.getName());
-				if(o.IsDone()==false) {
-					counter++;
+			if(occasions != null) {
+				ArrayList<Occasion> tasks = am.filterType("task", occasions);
+				//tasks = am.filterDate(sdf.format(dateToday), tasks);
+				for(Occasion o : tasks) {
+//					System.out.println(o.getName());
+					if(o.IsDone()==false) {
+						counter++;
+					}
 				}
 			}
+			
 		}
 //		System.out.println(counter);
 		return counter;

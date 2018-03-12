@@ -105,26 +105,28 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
 
 	public ArrayList<Occasion> filterType(String type, ArrayList<Occasion> occasions){
 		ArrayList<Occasion> filteredOccasions = new ArrayList<Occasion>();
-		switch(type) {
-			case "all" : return occasions;
-			
-			case "event" :
-				for(Occasion o : occasions) {
-					if(o instanceof Event) {
-						filteredOccasions.add(o);
-					}
-				}
-				break;
+		if(occasions != null) {
+			switch(type) {
+				case "all" : return occasions;
 				
-			case "task" :
-				for(Occasion o : occasions) {
-					if(o instanceof Task) {
-						filteredOccasions.add(o);
+				case "event" :
+					for(Occasion o : occasions) {
+						if(o instanceof Event) {
+							filteredOccasions.add(o);
+						}
 					}
-				}
-				break;
-				
-			default: 
+					break;
+					
+				case "task" :
+					for(Occasion o : occasions) {
+						if(o instanceof Task) {
+							filteredOccasions.add(o);
+						}
+					}
+					break;
+					
+				default: 
+			}
 		}
 		
 		
