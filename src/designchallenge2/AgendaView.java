@@ -26,6 +26,8 @@ import javax.swing.JButton;
 import javax.swing.JRadioButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import java.awt.FlowLayout;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class AgendaView extends JFrame implements Observer{
 	public JTabbedPane tabbedPane;
@@ -162,7 +164,7 @@ public class AgendaView extends JFrame implements Observer{
 		panel_2.setBounds(558, 273, 116, 177);
 		getContentPane().add(panel_2);
 		
-		lblTesting = new JLabel("Testing:");
+		lblTesting = new JLabel("Date:");
 		panel_2.add(lblTesting);
 		
 		txtpnDateselected = new JTextPane();
@@ -185,8 +187,8 @@ public class AgendaView extends JFrame implements Observer{
 		});
 		txtpnDateselected.setText(sdf.format(calendar.getDate()));
 		
-		JLabel label = new JLabel("No. of items left to do");
-		panel_2.add(label);
+		JLabel lblTodoItems = new JLabel("To-do items:");
+		panel_2.add(lblTodoItems);
 		
 		textPane = new JTextPane();
 		textPane.setPreferredSize(new Dimension(20, 20));
@@ -219,7 +221,7 @@ public class AgendaView extends JFrame implements Observer{
 		panel_3.add(btnNewButton);
 		
 		panel_4 = new JPanel();
-		panel_4.setBounds(218, 273, 330, 177);
+		panel_4.setBounds(218, 273, 164, 177);
 		getContentPane().add(panel_4);
 		
 		rdbtnAllItems = new JRadioButton("All Items");
@@ -250,6 +252,47 @@ public class AgendaView extends JFrame implements Observer{
 					.addComponent(rdbtnEventsOnly))
 		);
 		panel_4.setLayout(gl_panel_4);
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBounds(392, 273, 156, 177);
+		getContentPane().add(panel_5);
+		
+		JButton btnDeleteOccasion = new JButton("Delete Item");
+		btnDeleteOccasion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ArrayList<Occasion> occ = am.importOccasions();
+				for(Occasion o:occ) {
+					if(sdfh.format(o.getStartDate().getTime()).equals(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()-1))) {
+						am.removeOccasion(o);
+						break;
+					}
+				}
+			}
+		});
+		
+		JButton btnMarkDone = new JButton("Mark Done");
+		btnMarkDone.setPreferredSize(new Dimension(89, 23));
+		GroupLayout gl_panel_5 = new GroupLayout(panel_5);
+		gl_panel_5.setHorizontalGroup(
+			gl_panel_5.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_5.createSequentialGroup()
+					.addGap(33)
+					.addGroup(gl_panel_5.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(btnMarkDone, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(btnDeleteOccasion, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(34))
+		);
+		gl_panel_5.setVerticalGroup(
+			gl_panel_5.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_5.createSequentialGroup()
+					.addGap(53)
+					.addComponent(btnDeleteOccasion)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnMarkDone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addGap(67))
+		);
+		panel_5.setLayout(gl_panel_5);
 		
 		rdbtnAllItems.addMouseListener(new MouseAdapter() {
 			@Override

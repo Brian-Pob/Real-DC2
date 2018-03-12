@@ -53,7 +53,12 @@ public class AgendaModel {
     
     public void removeOccasion(Occasion occasion) {
     	ArrayList<Occasion> occasionsList = new ArrayList<Occasion>(dp.processData());
-    	occasionsList.remove(occasion);
+    	for(int i = 0; i < occasionsList.size();i++) {
+    		if(occasionsList.get(i).getStartDate().equals(occasion.getStartDate())) {
+    			occasionsList.remove(occasionsList.get(i));
+    			System.out.println("OCCASION REMOVED.");
+    		}
+    	}
     	exportOccasions(occasionsList);
     	
     	//update view
@@ -131,42 +136,11 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
         ArrayList<Occasion> occasions = this.importOccasions(); 
         occasions = this.sort(occasions); 
         occasions = this.filterType(type, occasions); 
-//        System.out.println("DEBUG START!!!");
         occasions = this.filterDate(date, occasions); 
-        
-        /*
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-        if(occasions.isEmpty())
-        	System.out.println("List is empty");
-        for(Occasion o: occasions) {
-        	if(o instanceof Task) {
-				Task t = (Task)o;
-				System.out.println("TASK | "+t.getName()+" | "+t.getStrColor()+" | "+sdf.format(t.getStartDate().getTime()));
-			}else if(o instanceof Event) {
-				Event e = (Event)o;
-				System.out.println("EVENT | "+e.getName()+" | "+e.getStrColor()+" | "
-									+sdf.format(e.getStartDate().getTime())+" | "+sdf.format(e.getEndDate().getTime()));
-			}
-        }
-        System.out.println("DEBUG END!!!");
-        */
         av.countUpdate();
         av.updateView(occasions); 
       } 
     
-    /*
-    public void addObserver(AgendaView av) {
-    	ObserverView ov = new ObserverView(av);
-    	ov.attach(this);
-    	this.observerViews.add(ov);
-    }
-    
-    public void notifyObservers(ArrayList<Occasion> occasions) {
-    	for(ObserverView ov : this.observerViews) {
-    		ov.update(occasions);
-    	}
-    }
-    */
     
     public boolean doesOverlap(Occasion occasion) {
     	ArrayList<Occasion>occasions = this.importOccasions();
