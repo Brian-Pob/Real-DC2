@@ -178,20 +178,13 @@ public class AgendaControl{
             		ArrayList<Occasion> occasions = am.importOccasions();
             		for(int i = 0; i < occasions.size(); i++)
             		{
-            			try{
-		            		if(occasions.get(i) instanceof Event){
-		            			Occasion newO = (Occasion) occasions.get(i).clone();
-		            			newO.IsDone();
-		            			am.removeOccasion(occasions.get(i));
-		            			am.addOccasion(newO);
-		            			
-		            			
-		            			
-		            		}
-		            	}catch(CloneNotSupportedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-							}
+            			if(occasions.get(i) instanceof Event){
+							occasions.get(i).IsDone();
+							am.exportOccasions(occasions);
+							
+							
+							
+						}
 	            	}
             		if(av.getRdbtnAllItems().isSelected()) {
 						am.updateViews(av.getDateTodayStr(), "all");
