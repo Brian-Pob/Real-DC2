@@ -1,4 +1,4 @@
-package designchallenge2;
+package model;
 import java.io.BufferedWriter;
 //model
 //import java.io.File;
@@ -8,6 +8,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import shared.Event;
+import shared.Occasion;
+import shared.Task;
 
 public class DataWriterCSV implements TemplateDataWriter{
 	//random comment

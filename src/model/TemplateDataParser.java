@@ -1,6 +1,8 @@
-package designchallenge2;
+package model;
 //model
 import java.util.ArrayList;
+
+import shared.Occasion;
 
 public interface TemplateDataParser {
 	

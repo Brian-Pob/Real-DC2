@@ -1,4 +1,4 @@
-package designchallenge2;
+package model;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -6,6 +6,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import shared.Event;
+import shared.Occasion;
+import shared.Task;
+import view.AgendaView;
 
 public class AgendaModel {
 	private DataParserCSV dp;

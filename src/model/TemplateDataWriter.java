@@ -1,6 +1,8 @@
-package designchallenge2;
+package model;
 
 import java.util.ArrayList;
+
+import shared.Occasion;
 
 //model
 public interface TemplateDataWriter {

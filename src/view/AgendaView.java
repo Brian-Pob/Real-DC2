@@ -1,4 +1,4 @@
-package designchallenge2;
+package view;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -17,6 +17,13 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
 import java.awt.SystemColor;
 import com.toedter.calendar.JDateChooser;
+
+import control.AgendaControl;
+import model.AgendaModel;
+import shared.Event;
+import shared.Occasion;
+import shared.Task;
+
 import com.toedter.calendar.JCalendar;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;

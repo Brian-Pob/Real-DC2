@@ -1,4 +1,4 @@
-package designchallenge2;
+package control;
 
 import javax.swing.JFrame;
 import javax.swing.GroupLayout;

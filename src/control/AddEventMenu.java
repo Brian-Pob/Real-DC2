@@ -1,4 +1,4 @@
-package designchallenge2;
+package control;
 //View
 
 import javax.swing.JFrame;

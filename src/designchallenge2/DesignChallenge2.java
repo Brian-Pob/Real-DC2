@@ -3,6 +3,12 @@ package designchallenge2;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+import control.AddEventMenu;
+import control.AddTaskMenu;
+import control.AgendaControl;
+import model.AgendaModel;
+import view.AgendaView;
+
 public class DesignChallenge2 {
 
 	public static void main(String[] args) {

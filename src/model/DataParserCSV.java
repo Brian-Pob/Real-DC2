@@ -1,4 +1,4 @@
-package designchallenge2;
+package model;
 //model
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -6,6 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import shared.Event;
+import shared.Occasion;
+import shared.Task;
 
 
 public class DataParserCSV implements TemplateDataParser{

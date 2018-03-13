@@ -1,6 +1,9 @@
-package designchallenge2;
+package view;
 
 import java.util.ArrayList;
+
+import model.AgendaModel;
+import shared.Occasion;
 
 public interface Observer {
 	

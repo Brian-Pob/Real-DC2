@@ -1,4 +1,4 @@
-package designchallenge2;
+package shared;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
