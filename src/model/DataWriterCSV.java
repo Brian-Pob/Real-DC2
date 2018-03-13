@@ -14,11 +14,8 @@ import shared.Occasion;
 import shared.Task;
 
 public class DataWriterCSV implements TemplateDataWriter{
-	//random comment
+
 	public DataWriterCSV(ArrayList<Occasion> o){
-//    	File file;
-//		file = new File("src/List of Occasions.csv");
-		
         this.writeFile(o);
     }
 	
@@ -33,7 +30,6 @@ public class DataWriterCSV implements TemplateDataWriter{
 				bw.write(result);
 				bw.close();
 			} catch (IOException ex) {
-				Logger.getLogger(DataWriterCSV.class.getName()).log(Level.SEVERE, null, ex);
 			}  
 	}
 	
@@ -43,7 +39,6 @@ public class DataWriterCSV implements TemplateDataWriter{
 			bw.write("");
 			bw.close();
 		} catch (IOException ex) {
-			Logger.getLogger(DataWriterCSV.class.getName()).log(Level.SEVERE, null, ex);
 		}  
 	}
 	public String convertToString(ArrayList<Occasion> occasions) {

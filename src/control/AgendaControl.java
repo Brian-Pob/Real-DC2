@@ -46,7 +46,6 @@ public class AgendaControl{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if(!eventMenu.getEventNameInput().getText().isEmpty()) {
-				//String eventDetails = eventMenu.getEventNameInput()+","
 				event = new Event(eventMenu.getEventNameInput().getText(),				//event name
 						
 								  eventMenu.getCmbStartMonth().getSelectedItem()+"/" 	//event start date and time
@@ -79,7 +78,6 @@ public class AgendaControl{
 				}
 				
 				if(!start.before(end)) {
-					System.out.println("End Date must come after Start Date");
 					JOptionPane.showMessageDialog(null, "End Date must come after Start Date");
 				}else if(am.doesOverlap(event)) {
 					JOptionPane.showMessageDialog(null, "Date selected must not overlap with existing tasks/events");
@@ -93,17 +91,10 @@ public class AgendaControl{
 						am.updateViews(av.getDateTodayStr(), "event");
 					}
 				}
-					
-				
 			}
 			else {
-				System.out.println("Input field cannot be empty");
 				JOptionPane.showMessageDialog(null, "Input field cannot be empty");
 			}
-			
-			
-			//model.exportOccasion(event)
-			//refreshAgenda()
 		}
 	}
 	
@@ -119,11 +110,8 @@ public class AgendaControl{
 								+taskMenu.getCmbDay().getSelectedItem()+"/"
 								+taskMenu.getCmbYear().getSelectedItem()+" "
 								+taskMenu.getCmbTime().getSelectedItem());
-//				System.out.println(taskMenu.getCmbTime().getSelectedItem()+"DEBUG!!!");
-//				System.out.println(task.get);
 				if(!am.doesOverlap(task)) {
 					am.addOccasion(task);
-					//am.updateView(dateToday, 
 					if(av.getRdbtnAllItems().isSelected()) {
 						am.updateViews(av.getDateTodayStr(), "all");
 					}else if(av.getRdbtnTasksOnly().isSelected()) {
@@ -135,16 +123,12 @@ public class AgendaControl{
 				else {
 					JOptionPane.showMessageDialog(null, "Date selected must not overlap with any existing tasks/events.");
 				}
-				
 			}
 			else {
-				System.out.println("Input field cannot be empty");
+
 				JOptionPane.showMessageDialog(null, "Input field cannot be empty");
 			}
-			//model.exportOccasion(task)
-			//refreshAgenda
 		}
-		
 	}
 
 	public void attachTaskMenu(AddTaskMenu taskMenu) {
@@ -186,10 +170,7 @@ public class AgendaControl{
             		{
             			if(occasions.get(i) instanceof Event){
 							occasions.get(i).getIsDone();
-							am.exportOccasions(occasions);
-							
-							
-							
+							am.exportOccasions(occasions);			
 						}
 	            	}
             		if(av.getRdbtnAllItems().isSelected()) {
@@ -200,18 +181,9 @@ public class AgendaControl{
 						am.updateViews(av.getDateTodayStr(), "event");
 					}
          
-            	}
-            		
-      
-        			
+            	}		
         	}
-        
        };
         instructions.start();
-        
-
 	}
-	
-
-	
 }

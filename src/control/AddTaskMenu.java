@@ -62,8 +62,6 @@ public class AddTaskMenu extends JFrame {
 		
 		do {
 			timeString = Integer.toString(start.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(start.get(Calendar.MINUTE));
-//			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
-//				timeString = "0"+timeString;
 			if(start.get(Calendar.MINUTE) <= 9)
 				timeString = timeString+"0";
 			
@@ -86,7 +84,6 @@ public class AddTaskMenu extends JFrame {
 		String curTime = hourBound+":"+minuteBound;
 		if(minuteBound == 0)
 			curTime = curTime+"0";
-		System.out.println(curTime);
 		cmbTime.setSelectedItem(curTime);
 		
 		for(int i = yearBound-100; i <= yearBound+100; i++) {

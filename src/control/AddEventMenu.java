@@ -47,7 +47,6 @@ public class AddEventMenu extends JFrame{
 		end.set(Calendar.MINUTE, 59);
 		String timeString = "";
 		GregorianCalendar gCal = new GregorianCalendar();
-		System.out.println("Add Event View Added");
 
 		int yearBound = gCal.get(GregorianCalendar.YEAR);
 		for(int i = yearBound-100; i <= yearBound+100; i++) {
@@ -76,8 +75,6 @@ public class AddEventMenu extends JFrame{
 
 		do {
 			timeString = Integer.toString(start.get(Calendar.HOUR_OF_DAY))+":"+Integer.toString(start.get(Calendar.MINUTE));
-//			if(start.get(Calendar.HOUR_OF_DAY) <= 9)
-//				timeString = "0"+timeString;
 			if(start.get(Calendar.MINUTE) <= 9)
 				timeString = timeString+"0";
 			
@@ -88,7 +85,6 @@ public class AddEventMenu extends JFrame{
 		
 		int hourBound = gCal.get(GregorianCalendar.HOUR_OF_DAY);
 		int minuteBound = gCal.get(GregorianCalendar.MINUTE);
-		//System.out.println(minuteBound);
 		if(minuteBound <= 30)
 			minuteBound = 30;
 		else if(minuteBound > 30) {
