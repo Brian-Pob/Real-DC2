@@ -43,7 +43,7 @@ public abstract class Occasion implements Cloneable{
 		this.name = name;
 	}
 	
-	public abstract boolean IsDone();
+	public abstract boolean getIsDone();
 	
 
 	public void setIsDone(boolean isDone) {

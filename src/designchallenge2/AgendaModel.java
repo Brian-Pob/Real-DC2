@@ -139,7 +139,7 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
         occasions = this.sort(occasions); 
         occasions = this.filterType(type, occasions); 
         occasions = this.filterDate(date, occasions); 
-        av.countUpdate();
+        av.updateToDoCount();
         av.updateView(occasions); 
       } 
     

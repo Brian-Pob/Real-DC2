@@ -179,7 +179,7 @@ public class AgendaControl{
             		for(int i = 0; i < occasions.size(); i++)
             		{
             			if(occasions.get(i) instanceof Event){
-							occasions.get(i).IsDone();
+							occasions.get(i).getIsDone();
 							am.exportOccasions(occasions);
 							
 							

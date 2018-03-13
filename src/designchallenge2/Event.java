@@ -14,7 +14,7 @@ public class Event extends Occasion {
 		setStartDate(startdate);
 		setEndDate(enddate);
 		setStrColor();
-		IsDone();
+		getIsDone();
 	}
 	
 	/*
@@ -43,7 +43,7 @@ public class Event extends Occasion {
 	}
 
 	@Override
-	public boolean IsDone() {
+	public boolean getIsDone() {
 		Calendar curr = Calendar.getInstance();
 		 
 	    if(this.endDate.before(curr)) {

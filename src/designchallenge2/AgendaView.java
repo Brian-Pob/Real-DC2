@@ -359,13 +359,13 @@ public class AgendaView extends JFrame implements Observer{
 			
 			if(o instanceof Task) {
 				Task t = (Task)o;
-				if(!t.IsDone())	
+				if(!t.getIsDone())	
 					agendaList.addElement("<html> <font color=\""+t.getStrColor()+"\""+">"+sdf.format(t.getStartDate().getTime())+" - "+t.getName()+"</font></html>");
 				else
 					agendaList.addElement("<html> <font color=\""+t.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+sdf.format(t.getStartDate().getTime())+" - "+t.getName()+"</span></font></html>");
 			}else if(o instanceof Event) {
 				Event e = (Event)o;
-				if(!e.IsDone())
+				if(!e.getIsDone())
 					agendaList.addElement("<html> <font color=\""+e.getStrColor()+"\""+">"+sdf.format(e.getStartDate().getTime())
 									+" - "+sdf.format(e.getEndDate().getTime())+" - "+e.getName()+"</font></html>"
 									);
@@ -384,7 +384,7 @@ public class AgendaView extends JFrame implements Observer{
 				String timeStr = timeFormat.format(t.getStartDate().getTime());
 				for(int rowNum = 0; rowNum < table.getRowCount(); rowNum++) {
 					if(table.getValueAt(rowNum, 0).equals(timeStr)) {
-						if(!t.IsDone())
+						if(!t.getIsDone())
 							table.setValueAt("<html> <font color=\""+t.getStrColor()+"\""+">"+t.getName()+"</font></html>", rowNum, 1);
 						else
 							table.setValueAt("<html> <font color=\""+t.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+t.getName()+"</span></font></html>", rowNum, 1);
@@ -397,7 +397,7 @@ public class AgendaView extends JFrame implements Observer{
 				String endTimeStr = timeFormat.format(e.getEndDate().getTime());
 				for(int rowNum = 0; rowNum < table.getRowCount();rowNum++) {
 					if(table.getValueAt(rowNum, 0).equals(startTimeStr)) {
-						if(!e.IsDone())
+						if(!e.getIsDone())
 							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+e.getName()+" - START"+"</font></html>", rowNum, 1);
 						else
 							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+e.getName()+" - START"+"</span></font></html>", rowNum, 1);
@@ -406,7 +406,7 @@ public class AgendaView extends JFrame implements Observer{
 							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+"~"+"</font><html>", rowNum, 1);
 							rowNum++;
 						}
-						if(!e.IsDone())
+						if(!e.getIsDone())
 							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+">"+e.getName()+" - END"+"</font></html>", rowNum, 1);
 						else
 							table.setValueAt("<html><font color=\""+e.getStrColor()+"\""+"><span style='text-decoration: line-through;'>"+e.getName()+" - END"+"</span></font></html>", rowNum, 1);
@@ -415,7 +415,7 @@ public class AgendaView extends JFrame implements Observer{
 				}
 			}
 		}
-		this.countUpdate();
+		this.updateToDoCount();
 	}
 //	public static void main(String[] args) {
 //		NewAgendaView tv2 = new NewAgendaView();
@@ -454,7 +454,7 @@ public class AgendaView extends JFrame implements Observer{
 				//tasks = am.filterDate(sdf.format(dateToday), tasks);
 				for(Occasion o : tasks) {
 //					System.out.println(o.getName());
-					if(o.IsDone()==false) {
+					if(o.getIsDone()==false) {
 						counter++;
 					}
 				}
@@ -465,7 +465,7 @@ public class AgendaView extends JFrame implements Observer{
 		return counter;
 	}
 	
-	public void countUpdate() {
+	public void updateToDoCount() {
 		this.textPane.setText(Integer.toString(this.toDoCount()));
 	}
 }

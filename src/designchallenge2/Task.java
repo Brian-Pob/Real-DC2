@@ -45,7 +45,7 @@ public class Task extends Occasion{
 	}
 
 	@Override
-	public boolean IsDone() {
+	public boolean getIsDone() {
 		// TODO Auto-generated method stub
 		return isDone;
 	}
