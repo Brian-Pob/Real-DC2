@@ -10,35 +10,9 @@ public abstract class Occasion implements Cloneable{
 	protected Calendar startDate;
 	protected Calendar endDate;
 	protected String name;
-//	protected Color color;
 	protected String strColor; 
 	protected boolean isDone;
-	//protected Calendar startTime;
-	
-	/*
-	public Calendar setTime(String input) {
-		Calendar cal = null;
-		DateFormat formatter = new SimpleDateFormat("HH:mm");
-		try {
-					Date d = (Date)formatter.parse(input);
-					cal = Calendar.getInstance();
-					cal.setTime(d);
-					//time = cal;
-					
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-		
-		return cal;
-		
-	}
-	
-	public void setStartTime(String input){
-		this.startTime = setTime(input);
-	}
-	*/
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -85,10 +59,6 @@ public abstract class Occasion implements Cloneable{
 	public String getName() {
 		return name;
 	}
-
-//	public Color getColor() {
-//		return color;
-//	}
 
 	public Calendar getStartDate() {
 		return this.startDate;

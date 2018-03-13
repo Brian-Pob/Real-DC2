@@ -16,14 +16,10 @@ public class AgendaModel {
 	private DataParserCSV dp;
 	private DataWriterCSV dw;
 	private AgendaView av;
-	//private List<ObserverView> observerViews;
 	
-	public AgendaModel(/*AgendaView av*/) {
-//		this.av = av;
-//		av.attachModel(this);
+	public AgendaModel() {
 		GregorianCalendar gCal = new GregorianCalendar();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-		//this.updateViews(sdf.format(gCal.getTime()), "all");
 	}
 	
 	public /*void*/ ArrayList<Occasion> importOccasions(){
@@ -31,7 +27,6 @@ public class AgendaModel {
         ArrayList<Occasion> occasions = null;
         try {
 			dp = new DataParserCSV("List of Occasions.csv");
-			//AgendaView.addAllEvents(dp.processData());
 			occasions = dp.processData();
 			
 			
@@ -61,7 +56,6 @@ public class AgendaModel {
     	for(int i = 0; i < occasionsList.size();i++) {
     		if(occasionsList.get(i).getStartDate().equals(occasion.getStartDate())) {
     			occasionsList.remove(occasionsList.get(i));
-    			System.out.println("OCCASION REMOVED.");
     		}
     	}
     	exportOccasions(occasionsList);
@@ -100,7 +94,6 @@ public ArrayList<Occasion> sort(ArrayList<Occasion> occasions){
 		for(Occasion o : occasions) {
 			formatted = formatter.format(o.getStartDate().getTime());
 			dateDetails = formatted.split(delimiter);
-			System.out.println(dateDetails[0]+" == "+date);
 			if(dateDetails[0].equals(date)) {
 				filteredOccasions.add(o);
 			}

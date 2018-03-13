@@ -62,7 +62,6 @@ public class AgendaView extends JFrame implements Observer{
 		GregorianCalendar gCal = new GregorianCalendar();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sdfh = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-//		dateToday = gCal.get(GregorianCalendar.)
 		setSize(new Dimension(700, 500));
 		setResizable(false);
 		setVisible(true);
@@ -92,7 +91,6 @@ public class AgendaView extends JFrame implements Observer{
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount()==2) {
 					if(table.getSelectedColumn()!=0) {
-						System.out.println(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()-1));
 						ArrayList<Occasion> occ = am.importOccasions();
 						for(Occasion o: occ) {
 							
@@ -119,9 +117,9 @@ public class AgendaView extends JFrame implements Observer{
 						}
 					}
 					
-					else {
-						System.out.println(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
-					}
+//					else {
+//						System.out.println(sdf.format(dateToday)+" "+table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
+//					}
 				}
 				
 			}
@@ -234,6 +232,7 @@ public class AgendaView extends JFrame implements Observer{
 		rdbtnAllItems = new JRadioButton("All Items");
 		
 		rdbtnAllItems.setSelected(true);
+		rdbtnAllItems.setEnabled(false);
 		
 		rdbtnTasksOnly = new JRadioButton("Tasks Only");
 		
@@ -297,42 +296,36 @@ public class AgendaView extends JFrame implements Observer{
 		rdbtnAllItems.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-//				if(!rdbtnAllItems.isSelected()) {
-					rdbtnTasksOnly.setSelected(false);
-					rdbtnEventsOnly.setSelected(false);
-					am.updateViews(sdf.format(dateToday), "all");
-//				}
-//				else {
-//					rdbtnAllItems.setSelected(true);
-//				}
+				rdbtnTasksOnly.setSelected(false);
+				rdbtnEventsOnly.setSelected(false);
+				am.updateViews(sdf.format(dateToday), "all");
+				rdbtnAllItems.setEnabled(false);
+				rdbtnTasksOnly.setEnabled(true);
+				rdbtnEventsOnly.setEnabled(true);
 			}
 		});
 		
 		rdbtnTasksOnly.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-//				if(!rdbtnTasksOnly.isSelected()) {
-					rdbtnAllItems.setSelected(false);
-					rdbtnEventsOnly.setSelected(false);
-					am.updateViews(sdf.format(dateToday), "task");
-//				}
-//				else {
-//					rdbtnTasksOnly.setSelected(true);
-//				}
+				rdbtnAllItems.setSelected(false);
+				rdbtnEventsOnly.setSelected(false);
+				am.updateViews(sdf.format(dateToday), "task");
+				rdbtnAllItems.setEnabled(true);
+				rdbtnTasksOnly.setEnabled(false);
+				rdbtnEventsOnly.setEnabled(true);
 			}
 		});
 		
 		rdbtnEventsOnly.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-//				if(!rdbtnEventsOnly.isSelected()) {
-					rdbtnTasksOnly.setSelected(false);
-					rdbtnAllItems.setSelected(false);
-					am.updateViews(sdf.format(dateToday), "event");
-//				}
-//				else {
-//					rdbtnEventsOnly.setSelected(true);
-//				}
+				rdbtnTasksOnly.setSelected(false);
+				rdbtnAllItems.setSelected(false);
+				am.updateViews(sdf.format(dateToday), "event");
+				rdbtnAllItems.setEnabled(true);
+				rdbtnTasksOnly.setEnabled(true);
+				rdbtnEventsOnly.setEnabled(false);
 			}
 		});
 		
@@ -346,21 +339,6 @@ public class AgendaView extends JFrame implements Observer{
 	public void updateView(ArrayList<Occasion> occasionsList) {
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 		
-		for(int i = 0; i < /*100*/10; i++){
-			System.out.println(); //acts like a clear screen. only temporary
-		}
-//		System.out.println("DEBUG VIEW START");
-		for(Occasion o: occasionsList) {//print out
-			if(o instanceof Task) {
-				Task t = (Task)o;
-				System.out.println("TASK | "+t.getName()+" | "+t.getStrColor()+" | "+sdf.format(t.getStartDate().getTime()));
-			}else if(o instanceof Event) {
-				Event e = (Event)o;
-				System.out.println("EVENT | "+e.getName()+" | "+e.getStrColor()+" | "
-									+sdf.format(e.getStartDate().getTime())+" | "+sdf.format(e.getEndDate().getTime()));
-			}
-		}
-//		System.out.println("DEBUG VIEW END");
 		agendaList.removeAllElements();
 		for(Occasion o: occasionsList) { //agendaList
 			
@@ -424,10 +402,7 @@ public class AgendaView extends JFrame implements Observer{
 		}
 		this.updateToDoCount();
 	}
-//	public static void main(String[] args) {
-//		NewAgendaView tv2 = new NewAgendaView();
-//		tv2.addToAgendaList("Hello World");
-//	}
+
 	public void attachModel(AgendaModel am) {
 		this.am = am;
 	}
@@ -458,9 +433,7 @@ public class AgendaView extends JFrame implements Observer{
 			ArrayList<Occasion> occasions = am.importOccasions();
 			if(occasions != null) {
 				ArrayList<Occasion> tasks = am.filterType("task", occasions);
-				//tasks = am.filterDate(sdf.format(dateToday), tasks);
 				for(Occasion o : tasks) {
-//					System.out.println(o.getName());
 					if(o.getIsDone()==false) {
 						counter++;
 					}
@@ -468,7 +441,6 @@ public class AgendaView extends JFrame implements Observer{
 			}
 			
 		}
-//		System.out.println(counter);
 		return counter;
 	}
 	
